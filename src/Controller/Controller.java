@@ -13,8 +13,12 @@ public class Controller extends Observable implements Observer {
         this.model = model;
     }
 
-    public void create (String userName, String password, String birthday, String firstName, String lastName, String address) {
+    public void insert (String userName, String password, String birthday, String firstName, String lastName, String address) {
         model.insert(userName,password,birthday,firstName,lastName,address);
+    }
+
+    public void delete (String userName){
+
     }
 
     @Override

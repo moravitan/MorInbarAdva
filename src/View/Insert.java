@@ -31,7 +31,6 @@ public class Insert implements Observer {
     public void update(Observable o, Object arg) {
 
     }
-
     public void submit(ActionEvent actionEvent) {
         String userName = String.valueOf(txtfld_userName.getText());
         String password = String.valueOf(txtfld_password.getText());
@@ -48,10 +47,17 @@ public class Insert implements Observer {
             alert.close();
         }
         else{
-            controller.create(userName,password,firstName,lastName,birthday,address);
+            controller.insert(userName,password,firstName,lastName,birthday,address);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setHeaderText("");
+            alert.setContentText("התחברת בהצלחה");
+            alert.showAndWait();
+            alert.close();
+            stage.close();
         }
     }
 
     public void cancel(ActionEvent actionEvent) {
+        stage.close();
     }
 }

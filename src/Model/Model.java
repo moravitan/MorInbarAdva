@@ -14,16 +14,16 @@ public class Model extends Observable {
     }
 
 
-    public void Read(String userName) {
+    public void read(String userName) {
 
     }
 
 
-    public void Update() {
+    public void update() {
 
     }
 
-    public void Delete(String userName) {
+    public void delete(String userName) {
         usersDatebase.deleteFromTable("Users", userName);
     }
 }

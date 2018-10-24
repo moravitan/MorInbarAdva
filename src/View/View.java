@@ -21,17 +21,14 @@ import java.util.Optional;
 public class View  implements Observer {
 
     private Controller controller;
-    private Insert createWindow;
+    private Insert insertWindow;
     private Stage primaryStage;
     public javafx.scene.control.Button btn_create;
     public javafx.scene.control.Button btn_read;
     public javafx.scene.control.Button btn_update;
     public javafx.scene.control.Button btn_delete;
 
-
-
     public void setController(Controller controller, Stage primaryStage){
-
         this.controller = controller;
         this.primaryStage = primaryStage;
     }
@@ -41,6 +38,7 @@ public class View  implements Observer {
     public void update(Observable o, Object arg) {
 
     }
+
 
     public void create(ActionEvent actionEvent) {
         //btn_create.setDisable(true);
@@ -63,11 +61,10 @@ public class View  implements Observer {
         stage.setResizable(false);
         SetStageCloseEvent(stage);
         stage.show();
-
-        createWindow = fxmlLoader.getController();
+        insertWindow = fxmlLoader.getController();
         //view.setResizeEvent(scene);
-        createWindow.setController(controller, stage);
-        controller.addObserver(createWindow);
+        insertWindow.setController(controller, stage);
+        controller.addObserver(insertWindow);
     }
 
     public void read(ActionEvent actionEvent) {
