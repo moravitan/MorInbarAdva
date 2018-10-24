@@ -21,7 +21,7 @@ import java.util.Optional;
 public class View  implements Observer {
 
     private Controller controller;
-    private Create createWindow;
+    private Insert createWindow;
     private Stage primaryStage;
     public javafx.scene.control.Button btn_create;
     public javafx.scene.control.Button btn_read;
@@ -45,10 +45,10 @@ public class View  implements Observer {
     public void create(ActionEvent actionEvent) {
         //btn_create.setDisable(true);
         FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("create.fxml"));
+                FXMLLoader(getClass().getResource("insert.fxml"));
         Parent root1 = null;
         try {
-            root1 = (Parent) fxmlLoader.load(getClass().getResource("create.fxml").openStream());
+            root1 = (Parent) fxmlLoader.load(getClass().getResource("insert.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

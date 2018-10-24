@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Create implements Observer {
+public class Insert implements Observer {
 
     private Controller controller;
     private Stage stage;
@@ -40,7 +40,6 @@ public class Create implements Observer {
         String lastName = String.valueOf(txtfld_lastName.getText());
         String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
-
         if (!password.equals(confirmPassword)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Oops..");
@@ -51,8 +50,6 @@ public class Create implements Observer {
         else{
             controller.create(userName,password,firstName,lastName,birthday,address);
         }
-
-
     }
 
     public void cancel(ActionEvent actionEvent) {
