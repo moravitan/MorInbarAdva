@@ -21,7 +21,7 @@ import java.util.Optional;
 public class View  implements Observer {
 
     private Controller controller;
-    private Create createWindow;
+    private Insert createWindow;
     private Stage primaryStage;
     public javafx.scene.control.Button btn_create;
     public javafx.scene.control.Button btn_read;

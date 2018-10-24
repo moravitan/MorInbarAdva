@@ -22,6 +22,8 @@ public class Main extends Application {
         Controller controller = new Controller(model);
         model.addObserver(controller);
 
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         primaryStage.setTitle("Welcome to Vacation4U");

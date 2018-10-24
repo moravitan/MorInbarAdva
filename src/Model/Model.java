@@ -6,10 +6,10 @@ import java.util.Observable;
 
 public class Model extends Observable {
 
-    private DBConnect usersDatebase = new DBConnect("Users");
+    private DBConnect usersDatebase = new DBConnect("Vacation4U");
 
-    public void Create (String userName, String password, String firstName, String lastName, String birthday, String address) {
-        String data = userName  + "," + password + "," + "," + firstName + "," + lastName + birthday + "," + address;
+    public void insert(String userName, String password, String firstName, String lastName, String birthday, String address) {
+        String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
         usersDatebase.insertIntoTable("Users", data);
     }
 

@@ -45,8 +45,8 @@ public class DBConnect {
         String createStatement = "CREATE TABLE IF NOT EXISTS Users (\n"
                 + "	user_name text PRIMARY KEY,\n"
                 + "	password text NOT NULL,\n"
-                + "first_name text NOT NULL,\n"
-                + "last_name text NOT NULL,\n"
+                + " first_name text NOT NULL,\n"
+                + " last_name text NOT NULL,\n"
                 + "	birthday text,\n"
                 + "address text NOT NULL\n"
                 + ");";
@@ -69,7 +69,7 @@ public class DBConnect {
 
         String url = "jdbc:sqlite:" + databaseName + ".db";
 
-        try (Connection conn = this.connect();
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             // set the corresponding parameters
             pstmt.setString(1,values[0]);
@@ -88,7 +88,9 @@ public class DBConnect {
     public void deleteFromTable (String tableName, String userName){
         String deleteStatement = "DELETE FROM Users WHERE user_name = ?";
 
-        try (Connection conn = this.connect();
+        String url = "jdbc:sqlite:" + databaseName + ".db";
+
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
             // set the corresponding param
             pstmt.setString(1, userName);
