@@ -13,8 +13,6 @@ public class test {
 //        Model model = new Model();
 //        model.insert("mor","mor","mor","mor","mor","mor");
 //        model.read("mor");
-        int i = 1;
-        int j = 2;
-        String str = "mor";
+
     }
 }
