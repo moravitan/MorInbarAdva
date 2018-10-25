@@ -31,6 +31,8 @@ public class View  implements Observer {
     public javafx.scene.control.Button btn_update;
     public javafx.scene.control.Button btn_delete;
 
+    private InsertUserName InsertUserNameWindow;
+
     public void setController(Controller controller, Stage primaryStage){
         this.controller = controller;
         this.primaryStage = primaryStage;
@@ -56,7 +58,7 @@ public class View  implements Observer {
         //set what you want on your scene
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Welcome!");
-        Scene scene = new Scene(root1, 950, 700);
+        Scene scene = new Scene(root1, 600, 500);
         stage.setScene(scene);
         //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
         //stage.setScene(scene);
@@ -98,28 +100,28 @@ public class View  implements Observer {
 
     public void update(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("update.fxml"));
+                FXMLLoader(getClass().getResource("InsertUserName.fxml"));
         Parent root = null;
         try {
-            root = (Parent) fxmlLoader.load(getClass().getResource("update.fxml").openStream());
+            root = (Parent) fxmlLoader.load(getClass().getResource("InsertUserName.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
         Stage stage = new Stage();
         //set what you want on your scene
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Welcome!");
-        Scene scene = new Scene(root, 500, 300);
+        stage.setTitle("עדכון פרטים אישיים");
+        Scene scene = new Scene(root, 300, 250);
         stage.setScene(scene);
         //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
         //stage.setScene(scene);
         stage.setResizable(false);
         SetStageCloseEvent(stage);
         stage.show();
-        updateWindow = fxmlLoader.getController();
+        InsertUserNameWindow = fxmlLoader.getController();
         //view.setResizeEvent(scene);
-        updateWindow.setController(controller, stage);
-        controller.addObserver(updateWindow);
+        InsertUserNameWindow.setController(controller, stage);
+        controller.addObserver(InsertUserNameWindow);
     }
 
     public void delete(ActionEvent actionEvent) {
@@ -155,10 +157,10 @@ public class View  implements Observer {
      */
     public void exit(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("exit");
-        alert.setContentText("Are you sure you want to exit?");
-        ((Button)alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
-        ((Button)alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
+        alert.setHeaderText("יציאה");
+        alert.setContentText("אתה בטוח שברצונך לעזוב?");
+        ((Button)alert.getDialogPane().lookupButton(ButtonType.OK)).setText("כן");
+        ((Button)alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("חזור");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             // ... user chose OK
