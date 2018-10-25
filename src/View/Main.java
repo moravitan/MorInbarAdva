@@ -25,7 +25,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         primaryStage.setTitle("Welcome to Vacation4U");
-        Scene scene = new Scene(root, 200, 250);
+        Scene scene = new Scene(root, 300, 400);
         primaryStage.setScene(scene);
 
         view = fxmlLoader.getController();

@@ -1,6 +1,7 @@
 package Model;
 
 import Database.DBConnect;
+import javafx.scene.control.Alert;
 
 import java.util.Observable;
 
@@ -21,7 +22,19 @@ public class Model extends Observable {
     }
 
     public String read(String userName) {
-       return usersDatebase.read("Users", userName);
+       if (usersDatebase.read("Users", userName) == null){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setHeaderText("אופס..");
+           alert.setContentText("שם משתמש לא קיים במערכת");
+           alert.showAndWait();
+           alert.close();
+       }
+       else{
+           return usersDatebase.read("Users", userName);
+       }
+
+       return null;
+
     }
 
 

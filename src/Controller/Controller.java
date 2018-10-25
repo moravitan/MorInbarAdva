@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Model;
+import javafx.scene.control.Alert;
 
 import java.sql.SQLException;
 import java.util.Observable;
@@ -28,6 +29,14 @@ public class Controller extends Observable implements Observer {
 
     public void update(Observable o, Object arg) {
 
+    }
+
+    public void alert (){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("אופס..");
+        alert.setContentText("הכנס שם משתמש");
+        alert.showAndWait();
+        alert.close();
     }
 
 
