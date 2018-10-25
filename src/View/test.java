@@ -10,8 +10,9 @@ public class test {
 
     public static void main(String[] args) {
 
-//        Model model = new Model();
-//        model.insert("mor","mor","mor","mor","mor","mor");
-//        model.read("mor");
+        Model model = new Model();
+       //model.insert("mor","mor","mor","mor","mor","mor");
+       model.read("mor");
+
     }
 }
