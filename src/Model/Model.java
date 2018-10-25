@@ -7,22 +7,41 @@ import java.util.Observable;
 
 public class Model extends Observable {
 
-    private DBConnect usersDatebase;
+    private DBConnect usersDatabase;
 
+    /**
+     * Constructor for class Model
+     * The constructor create a new database with the name "Vacation4U"
+     * and create a new table by the name "Users"
+     */
     public Model() {
-        this.usersDatebase = new DBConnect("Vacation4U");
-        usersDatebase.connect();
-        usersDatebase.createTable("Users");
+        this.usersDatabase = new DBConnect("Vacation4U");
+        usersDatabase.connect();
+        usersDatabase.createTable("Users");
     }
 
+    /**
+     * This method insert to the database a new row with the given parameters
+     * @param userName
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param birthday
+     * @param address
+     */
     public void insert(String userName, String password, String firstName, String lastName, String birthday, String address) {
         String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
-        usersDatebase.insertIntoTable("Users", data);
-
+        usersDatabase.insertIntoTable("Users", data);
     }
 
+    /**
+     * This method search and return the row in the database with the same user name as @param userName if exist
+     * if doesn't exist - alert message shows up
+     * @param userName
+     * @return
+     */
     public String read(String userName) {
-       if (usersDatebase.read("Users", userName) == null){
+       if (usersDatabase.read("Users", userName) == null){
            Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setHeaderText("אופס..");
            alert.setContentText("שם משתמש לא קיים במערכת");
@@ -30,19 +49,25 @@ public class Model extends Observable {
            alert.close();
        }
        else{
-           return usersDatebase.read("Users", userName);
+           return usersDatabase.read("Users", userName);
        }
-
        return null;
-
     }
 
 
+    /**
+     * This method update the database with the given @param data
+     * @param data
+     */
     public void update(String data) {
-        usersDatebase.updateDatabase("Users", data);
+        usersDatabase.updateDatabase("Users", data);
     }
 
+    /**
+     * This method delete a row from the database where user name is equal to @param userName
+     * @param userName
+     */
     public void delete(String userName) {
-        usersDatebase.deleteFromTable("Users", userName);
+        usersDatabase.deleteFromTable("Users", userName);
     }
 }
