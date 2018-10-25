@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,6 +22,7 @@ public class Insert implements Observer {
     public javafx.scene.control.TextField txtfld_lastName;
     public javafx.scene.control.TextField txtfld_Birthday;
     public javafx.scene.control.TextField txtfld_Address;
+    public javafx.scene.control.DatePicker datepicker_date;
     //</editor-fold>
 
 
@@ -42,6 +44,10 @@ public class Insert implements Observer {
         String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
 
+
+        //String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+
         // Checking if the user name already exist in the data base
         if (controller.read(userName) != null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -59,6 +65,7 @@ public class Insert implements Observer {
             alert.showAndWait();
             alert.close();
         }
+        // Checking if all the text fields are not empty
         else if (!validation()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Oops..");
