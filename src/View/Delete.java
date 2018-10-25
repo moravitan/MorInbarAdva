@@ -19,23 +19,26 @@ public class Delete implements Observer {
      * @param controller
      * @param stage
      */
+
     void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
 
+    /**
+     * This delete the user name that equal to the user input
+     */
     public void confirm(){
         String userName = String.valueOf(txtfld_userinput.getText());
+        // checks if the user enter an input
         if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()){
             controller.alert();
         }
-
         else {
             String data = controller.read(userName);
             if (data != null) {
                 controller.delete(userName);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                //alert.setHeaderText("");
                 alert.setContentText("המחיקה התבצעה בהצלחה");
                 alert.showAndWait();
                 alert.close();
