@@ -26,4 +26,8 @@ public class Controller extends Observable implements Observer {
         return model.read(userName);
     }
 
+    public void updateDB(String userDetails){
+        ///complete this
+    }
+
 }

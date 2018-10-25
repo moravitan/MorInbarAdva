@@ -88,10 +88,11 @@ public class DBConnect {
             ResultSet rs  = pstmt.executeQuery();
 
             while (rs.next()) {
-                String res = rs.getString("user_name") + "\t" +
-                                rs.getString("first_name") + "\t" +
-                                rs.getString("last_name") + "\t" +
-                                rs.getString("birthday") + "\t" +
+                String res = rs.getString("user_name") + "," +
+                                rs.getString("password") + "," +
+                                rs.getString("first_name") + "," +
+                                rs.getString("last_name") + "," +
+                                rs.getString("birthday") + "," +
                                 rs.getString("address");
                 System.out.println(res);
                 return res;
