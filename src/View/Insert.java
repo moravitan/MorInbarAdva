@@ -86,10 +86,9 @@ public class Insert implements Observer {
     }
 
     /**
-     * This method check if all the text fields are not empty
-     * @return true if all the text fields are not empty, otherwise return false
+     * This method checks if the user filled all the Text Fields
+     * @return true if the user filled all the Text Fields, otherwise return false
      */
-
     private boolean validation() {
         if (txtfld_userName.getText() == null || txtfld_userName.getText().trim().isEmpty())
             return false;
