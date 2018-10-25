@@ -30,18 +30,23 @@ public class Delete implements Observer {
         if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()){
             controller.alert();
         }
-        String data = controller.read(userName);
-        if (data != null){
-            controller.delete(userName);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            //alert.setHeaderText("");
-            alert.setContentText("המחיקה התבצעה בהצלחה");
-            alert.showAndWait();
-            alert.close();
-            stage.close();
+
+        else {
+            String data = controller.read(userName);
+            if (data != null) {
+                controller.delete(userName);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                //alert.setHeaderText("");
+                alert.setContentText("המחיקה התבצעה בהצלחה");
+                alert.showAndWait();
+                alert.close();
+                stage.close();
+            }
         }
+    }
 
-
+    public void exit(){
+        stage.close();
     }
 
     @Override

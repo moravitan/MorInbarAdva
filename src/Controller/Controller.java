@@ -24,6 +24,7 @@ public class Controller extends Observable implements Observer {
     }
 
     public void delete (String userName){
+        model.delete(userName);
 
     }
 
@@ -31,7 +32,7 @@ public class Controller extends Observable implements Observer {
 
     }
 
-    public void alert (){
+    public void alert(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText("אופס..");
         alert.setContentText("הכנס שם משתמש");

@@ -38,6 +38,7 @@ public class Insert implements Observer {
     public void update(Observable o, Object arg) {
 
     }
+
     public void submit(ActionEvent actionEvent) {
         String userName = String.valueOf(txtfld_userName.getText());
         String password = String.valueOf(txtfld_password.getText());
