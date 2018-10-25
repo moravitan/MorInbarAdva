@@ -100,34 +100,6 @@ public class DBConnect {
             return null;
 
         }
-    }
-
-    public String read (String tableName, String userName){
-
-        String selectQuery = "SELECT * FROM users WHERE user_name = ?";
-
-        String url = "jdbc:sqlite:" + databaseName + ".db";
-
-        try (Connection conn = DriverManager.getConnection(url);
-             PreparedStatement pstmt = conn.prepareStatement(selectQuery)) {
-
-            // set the value
-            pstmt.setString(1,userName);
-            ResultSet rs  = pstmt.executeQuery();
-
-            while (rs.next()) {
-                String res = rs.getString("user_name") + "," +
-                                rs.getString("password") + "," +
-                                rs.getString("first_name") + "," +
-                                rs.getString("last_name") + "," +
-                                rs.getString("birthday") + "," +
-                                rs.getString("address");
-                System.out.println(res);
-                return res;
-            }
-        } catch (SQLException e) {
-            return null;
-        }
         return null;
     }
 

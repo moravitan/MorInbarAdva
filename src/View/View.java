@@ -33,7 +33,7 @@ public class View  implements Observer {
 
     private InsertUserName InsertUserNameWindow;
 
-    public void setController(Controller controller, Stage primaryStage){
+    public void setController(Controller controller, Stage primaryStage) {
 
         this.controller = controller;
         this.primaryStage = primaryStage;
@@ -69,8 +69,8 @@ public class View  implements Observer {
         stage.show();
         insertWindow = fxmlLoader.getController();
         //view.setResizeEvent(scene);
-        createWindow.setController(controller, stage);
-        controller.addObserver(createWindow);
+        insertWindow.setController(controller, stage);
+        controller.addObserver(insertWindow);
     }
 
     public void read(ActionEvent actionEvent) {
@@ -96,7 +96,7 @@ public class View  implements Observer {
         readWindow = fxmlLoader.getController();
         //view.setResizeEvent(scene);
         readWindow.setController(controller, stage);
-       // controller.addObserver(readWindow);
+        // controller.addObserver(readWindow);
 
     }
 
@@ -153,34 +153,15 @@ public class View  implements Observer {
 
     }
 
-    /**
-     *
-     * @param actionEvent
-     */
-    public void exit(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("יציאה");
-        alert.setContentText("אתה בטוח שברצונך לעזוב?");
-        ((Button)alert.getDialogPane().lookupButton(ButtonType.OK)).setText("כן");
-        ((Button)alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("חזור");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-            // Close program
-            primaryStage.close();
-        }
-        alert.close();
-
-
-    private void SetStageCloseEvent(Stage primaryStage) {
+    private void SetStageCloseEvent(Stage stage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                ((Button)alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
-                ((Button)alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
                 alert.setContentText("Are you sure you want to exit?");
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
+                if (result.get() == ButtonType.OK) {
                     // ... user chose OK
                     // Close program
                 } else {
@@ -189,5 +170,24 @@ public class View  implements Observer {
                 }
             }
         });
+    }
+
+    /**
+     * @param actionEvent
+     */
+    public void exit(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("יציאה");
+        alert.setContentText("אתה בטוח שברצונך לעזוב?");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("כן");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("חזור");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            // ... user chose OK
+            // Close program
+            primaryStage.close();
+        }
+        alert.close();
+
     }
 }

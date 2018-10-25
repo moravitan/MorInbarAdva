@@ -1,6 +1,7 @@
 package Model;
 
 import Database.DBConnect;
+import javafx.scene.control.Alert;
 
 import java.util.Observable;
 

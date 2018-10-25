@@ -103,45 +103,8 @@ public class Insert implements Observer {
             return false;
         }
         else {
-            return true;
-            controller.insert(userName,password,firstName,lastName,date,address);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            //alert.setHeaderText("");
-            alert.setContentText("התחברת בהצלחה");
-            alert.showAndWait();
-            alert.close();
-            stage.close();
+           return true;
         }
-    }
-
-    /**
-     * This method check if all the text fields are not empty
-     * @return true if all the text fields are not empty, otherwise return false
-     */
-
-    private boolean validation() {
-        if (txtfld_userName.getText() == null || txtfld_userName.getText().trim().isEmpty())
-            return false;
-        if (txtfld_password.getText() == null || txtfld_password.getText().trim().isEmpty())
-            return false;
-        if (txtfld_confirmPassword.getText() == null || txtfld_confirmPassword.getText().trim().isEmpty())
-            return false;
-        if (txtfld_firstName.getText() == null || txtfld_firstName.getText().trim().isEmpty())
-            return false;
-        if (txtfld_lastName.getText() == null || txtfld_lastName.getText().trim().isEmpty())
-            return false;
-        if (txtfld_Birthday.getText() == null || txtfld_Birthday.getText().trim().isEmpty())
-            return false;
-        if (txtfld_Address.getText() == null || txtfld_Address.getText().trim().isEmpty()){
-            return false;
-        }
-        else {
-            return true;
-        }
-
-
-
-
     }
 
     public void cancel(ActionEvent actionEvent) {

@@ -31,14 +31,6 @@ public class Controller extends Observable implements Observer {
         ///complete this
     }
 
-    public String read(String userName){
-        return model.read(userName);
-    }
-
-    public void updateDB(String userDetails){
-        ///complete this
-    }
-
     public void delete (String userName){
         model.delete(userName);
 
