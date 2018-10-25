@@ -73,6 +73,13 @@ public class DBConnect {
         }
     }
 
+    public void updateDatabase(){
+
+    }
+
+
+
+
     public void deleteFromTable (String tableName, String userName){
         String deleteStatement = "DELETE FROM Users WHERE user_name = ?";
 

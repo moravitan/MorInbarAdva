@@ -65,7 +65,7 @@
                           <MenuItem mnemonicParsing="false" text="Delete" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Exit" onAction="#Exit">
+                      <Menu mnemonicParsing="false" text="Exit" onAction="#exit">
                         <items>
                           <MenuItem mnemonicParsing="false" text="About" />
                         </items>

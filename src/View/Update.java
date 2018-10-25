@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Delete implements Observer {
+public class Update implements Observer {
 
     private Controller controller;
     private Stage stage;

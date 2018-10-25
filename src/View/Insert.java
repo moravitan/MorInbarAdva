@@ -41,6 +41,8 @@ public class Insert implements Observer {
         String lastName = String.valueOf(txtfld_lastName.getText());
         String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
+
+        // Checking that both password text fields are equal
         if (!password.equals(confirmPassword)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Oops..");
@@ -49,7 +51,7 @@ public class Insert implements Observer {
             alert.close();
         }
         else{
-            controller.insert(userName,password,firstName,lastName,birthday,address);
+                controller.insert(userName,password,firstName,lastName,birthday,address);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             //alert.setHeaderText("");
             alert.setContentText("התחברת בהצלחה");

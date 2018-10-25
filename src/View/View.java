@@ -22,7 +22,7 @@ public class View  implements Observer {
 
     private Controller controller;
     private Insert insertWindow;
-    private Delete deleteWindow;
+    private Update updateWindow;
     private Stage primaryStage;
     public javafx.scene.control.Button btn_create;
     public javafx.scene.control.Button btn_read;
@@ -71,14 +71,11 @@ public class View  implements Observer {
     }
 
     public void update(ActionEvent actionEvent) {
-    }
-
-    public void delete(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("delete.fxml"));
-        Parent root1 = null;
+                FXMLLoader(getClass().getResource("update.fxml"));
+        Parent root = null;
         try {
-            root1 = (Parent) fxmlLoader.load(getClass().getResource("delete.fxml").openStream());
+            root = (Parent) fxmlLoader.load(getClass().getResource("update.fxml").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,21 +83,41 @@ public class View  implements Observer {
         //set what you want on your scene
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Welcome!");
-        Scene scene = new Scene(root1, 200, 100);
+        Scene scene = new Scene(root, 200, 100);
         stage.setScene(scene);
         //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
         //stage.setScene(scene);
         stage.setResizable(false);
         SetStageCloseEvent(stage);
         stage.show();
-        deleteWindow = fxmlLoader.getController();
+        updateWindow = fxmlLoader.getController();
         //view.setResizeEvent(scene);
-        deleteWindow.setController(controller, stage);
-        controller.addObserver(deleteWindow);
+        updateWindow.setController(controller, stage);
+        controller.addObserver(updateWindow);
+    }
+
+    public void delete(ActionEvent actionEvent) {
 
     }
 
-    public void Exit(ActionEvent actionEvent) {
+    /**
+     *
+     * @param actionEvent
+     */
+    public void exit(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("exit");
+        alert.setContentText("Are you sure you want to exit?");
+        ((Button)alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
+        ((Button)alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+            // Close program
+            primaryStage.close();
+        }
+        alert.close();
+
     }
 
 
