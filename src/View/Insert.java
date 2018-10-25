@@ -52,24 +52,24 @@ public class Insert implements Observer {
         // Checking if the user name already exist in the data base
         if (controller.read(userName) != null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Oops..");
-            alert.setContentText("This user name already exist in the data base");
+            alert.setHeaderText("אופס..");
+            alert.setContentText("שם המשתמש כבר קיים במערכת, אנא בחר שם משתמש חדש");
             alert.showAndWait();
             alert.close();
         }
         // Checking that both password text fields are equal
         else if (!password.equals(confirmPassword)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Oops..");
-            alert.setContentText("Password isn't matching");
+            alert.setHeaderText("אופס..");
+            alert.setContentText("סיסמאות לא תואמות");
             alert.showAndWait();
             alert.close();
         }
         // Checking if all the text fields are not empty
         else if (!validation()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Oops..");
-            alert.setContentText("One or more fields is empty");
+            alert.setHeaderText("אופס..");
+            alert.setContentText("אחד או יותר מהשדות לא מלאים");
             alert.showAndWait();
             alert.close();
         }
