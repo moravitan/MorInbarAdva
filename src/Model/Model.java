@@ -13,17 +13,28 @@ public class Model extends Observable {
         usersDatebase.insertIntoTable("Users", data);
     }
 
-
     public String read(String userName) {
-        return usersDatebase.read("Users",userName);
+       if (usersDatebase.read("Users", userName) == null){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setHeaderText("אופס..");
+           alert.setContentText("שם משתמש לא קיים במערכת");
+           alert.showAndWait();
+           alert.close();
+       }
+       else{
+           return usersDatebase.read("Users", userName);
+       }
+
+       return null;
+
     }
 
 
-    public void Update() {
+    public void update() {
 
     }
 
-    public void Delete(String userName) {
+    public void delete(String userName) {
         usersDatebase.deleteFromTable("Users", userName);
     }
 }

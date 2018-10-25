@@ -42,19 +42,19 @@ public class InsertUserName implements Observer {
     }
 
     public void search(ActionEvent actionEvent){
+
         String username = String.valueOf(userName.getText());
 
-        //check if userName does not exist, return alert error
-        if (controller.read(username) == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("שגיאה");
-            alert.setContentText("משתמש לא קיים");
-            alert.showAndWait();
-            alert.close();
+        if (userName.getText() == null || userName.getText().trim().isEmpty()) {
+            controller.alert();
         }
 
-        else{
-            userDetails = controller.read(username);
+        // read the user name from the data base
+        // if doesn't exist showing alert message
+        userDetails = controller.read(username);
+
+        //check if userName does not exist, return alert error
+        if (userDetails != null){
             //btn_create.setDisable(true);
             FXMLLoader fxmlLoader = new
                     FXMLLoader(getClass().getResource("Update.fxml"));
@@ -79,7 +79,6 @@ public class InsertUserName implements Observer {
             //view.setResizeEvent(scene);
             updateWindow.setController(controller, stage);
             controller.addObserver(updateWindow);
-
             updateWindow.setUserDetails(userDetails);
         }
     }

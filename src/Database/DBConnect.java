@@ -15,7 +15,7 @@ public class DBConnect {
     /**
      * This method create if doesn't exist a new database by the name which equal to the databaseName field.
      */
-    public void connect() {
+    public void Connect() {
         Connection connection = null;
 
         try {
@@ -29,7 +29,7 @@ public class DBConnect {
         }
     }
 
-    public void createTable(String tableName){
+    public void CreateTable(String tableName){
         String createStatement = "CREATE TABLE IF NOT EXISTS Users (\n"
                 + "	user_name text PRIMARY KEY,\n"
                 + "	password text NOT NULL,\n"
@@ -50,7 +50,6 @@ public class DBConnect {
 
     }
 
-
     public void insertIntoTable(String tableName, String data){
 
         String [] values = data.split(",");
@@ -70,6 +69,35 @@ public class DBConnect {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
+
+        }
+    }
+
+    public String read (String tableName, String userName){
+
+        String selectQuery = "SELECT * FROM users WHERE user_name = ?";
+
+        String url = "jdbc:sqlite:" + databaseName + ".db";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(selectQuery)) {
+
+            // set the value
+            pstmt.setString(1,userName);
+            ResultSet rs  = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String res = rs.getString("user_name") + "," +
+                        rs.getString("password") + "," +
+                                rs.getString("first_name") + "," +
+                                rs.getString("last_name") + "," +
+                                rs.getString("birthday") + "," +
+                                rs.getString("address");
+                System.out.println(res);
+                return res;
+            }
+        } catch (SQLException e) {
+            return null;
 
         }
     }
@@ -126,6 +154,7 @@ public class DBConnect {
         }
 
     }
+
     /**
      *
      * @return the name of the database

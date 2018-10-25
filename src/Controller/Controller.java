@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Model;
+import javafx.scene.control.Alert;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -29,5 +30,28 @@ public class Controller extends Observable implements Observer {
     public void updateDB(String userDetails){
         ///complete this
     }
+
+    public String read(String userName){
+        return model.read(userName);
+    }
+
+    public void updateDB(String userDetails){
+        ///complete this
+    }
+
+    public void delete (String userName){
+        model.delete(userName);
+
+    }
+
+    public void alert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("אופס..");
+        alert.setContentText("הכנס שם משתמש");
+        alert.showAndWait();
+        alert.close();
+    }
+
+
 
 }

@@ -5,7 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,7 +29,7 @@ public class Insert implements Observer {
     //</editor-fold>
 
 
-    void setController(Controller controller, Stage stage){
+    public void setController (Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
@@ -35,6 +38,7 @@ public class Insert implements Observer {
     public void update(Observable o, Object arg) {
 
     }
+
     public void submit(ActionEvent actionEvent) {
         String userName = String.valueOf(txtfld_userName.getText());
         String password = String.valueOf(txtfld_password.getText());
@@ -43,10 +47,8 @@ public class Insert implements Observer {
         String lastName = String.valueOf(txtfld_lastName.getText());
         String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
-
-
-        //String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
+        LocalDate d = datepicker_date.getValue();
+        String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         // Checking if the user name already exist in the data base
         if (controller.read(userName) != null){
@@ -83,6 +85,39 @@ public class Insert implements Observer {
             stage.close();
         }
     }
+
+    private boolean validation() {
+        if (txtfld_userName.getText() == null || txtfld_userName.getText().trim().isEmpty())
+            return false;
+        if (txtfld_password.getText() == null || txtfld_password.getText().trim().isEmpty())
+            return false;
+        if (txtfld_confirmPassword.getText() == null || txtfld_confirmPassword.getText().trim().isEmpty())
+            return false;
+        if (txtfld_firstName.getText() == null || txtfld_firstName.getText().trim().isEmpty())
+            return false;
+        if (txtfld_lastName.getText() == null || txtfld_lastName.getText().trim().isEmpty())
+            return false;
+        if (txtfld_Birthday.getText() == null || txtfld_Birthday.getText().trim().isEmpty())
+            return false;
+        if (txtfld_Address.getText() == null || txtfld_Address.getText().trim().isEmpty()){
+            return false;
+        }
+        else {
+            return true;
+            controller.insert(userName,password,firstName,lastName,date,address);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setHeaderText("");
+            alert.setContentText("התחברת בהצלחה");
+            alert.showAndWait();
+            alert.close();
+            stage.close();
+        }
+    }
+
+    /**
+     * This method check if all the text fields are not empty
+     * @return true if all the text fields are not empty, otherwise return false
+     */
 
     private boolean validation() {
         if (txtfld_userName.getText() == null || txtfld_userName.getText().trim().isEmpty())
