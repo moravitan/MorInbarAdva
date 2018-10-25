@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+=======
+<?import javafx.scene.control.Label?>
+>>>>>>> inbar
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<<<<<<< HEAD
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Read">
+=======
+<?import javafx.geometry.Insets?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> inbar
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,7 +27,10 @@
   </rowConstraints>
    <children>
       <Label prefHeight="75.0" prefWidth="324.0" text="                                          Search" GridPane.columnSpan="2" />
+<<<<<<< HEAD
       <TextField prefHeight="57.0" prefWidth="409.0" promptText="insert user name" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+=======
+>>>>>>> inbar
    </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
