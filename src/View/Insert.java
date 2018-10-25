@@ -5,7 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -43,10 +46,8 @@ public class Insert implements Observer {
         String lastName = String.valueOf(txtfld_lastName.getText());
         String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
-
-
-        //String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
+        LocalDate d = datepicker_date.getValue();
+        String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         // Checking if the user name already exist in the data base
         if (controller.read(userName) != null){
@@ -56,7 +57,6 @@ public class Insert implements Observer {
             alert.showAndWait();
             alert.close();
         }
-
         // Checking that both password text fields are equal
         else if (!password.equals(confirmPassword)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -74,7 +74,7 @@ public class Insert implements Observer {
             alert.close();
         }
         else{
-            controller.insert(userName,password,firstName,lastName,birthday,address);
+            controller.insert(userName,password,firstName,lastName,date,address);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             //alert.setHeaderText("");
             alert.setContentText("התחברת בהצלחה");
@@ -83,6 +83,11 @@ public class Insert implements Observer {
             stage.close();
         }
     }
+
+    /**
+     * This method check if all the text fields are not empty
+     * @return true if all the text fields are not empty, otherwise return false
+     */
 
     private boolean validation() {
         if (txtfld_userName.getText() == null || txtfld_userName.getText().trim().isEmpty())
@@ -103,10 +108,6 @@ public class Insert implements Observer {
         else {
             return true;
         }
-
-
-
-
     }
 
     public void cancel(ActionEvent actionEvent) {

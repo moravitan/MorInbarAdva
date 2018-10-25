@@ -23,6 +23,7 @@ public class View  implements Observer {
     private Controller controller;
     private Insert insertWindow;
     private Update updateWindow;
+    private Read readWindow;
     private Stage primaryStage;
     public javafx.scene.control.Button btn_create;
     public javafx.scene.control.Button btn_read;
@@ -68,6 +69,30 @@ public class View  implements Observer {
     }
 
     public void read(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new
+                FXMLLoader(getClass().getResource("read.fxml"));
+        Parent root = null;
+        try {
+            root = (Parent) fxmlLoader.load(getClass().getResource("read.fxml").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        //set what you want on your scene
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Welcome!");
+        Scene scene = new Scene(root, 200, 100);
+        stage.setScene(scene);
+        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
+        //stage.setScene(scene);
+        stage.setResizable(false);
+        SetStageCloseEvent(stage);
+        stage.show();
+        readWindow = fxmlLoader.getController();
+        //view.setResizeEvent(scene);
+        readWindow.setController(controller, stage);
+       // controller.addObserver(readWindow);
+
     }
 
     public void update(ActionEvent actionEvent) {
