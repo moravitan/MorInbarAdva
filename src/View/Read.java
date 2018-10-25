@@ -34,6 +34,10 @@ public class Read {
         this.stage = stage;
     }
 
+    /**
+     * This method search a row in the data base where the primary key is equal to the user input
+     * if a row is founded, a new window with the user details is shows up
+     */
     public void confirm (){
         String userName = String.valueOf(txtfld_userinput.getText());
 
@@ -60,23 +64,26 @@ public class Read {
             stage.setTitle("Welcome!");
             Scene scene = new Scene(root, 600, 400);
             stage.setScene(scene);
-            //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-            //stage.setScene(scene);
             stage.setResizable(false);
             SetStageCloseEvent(stage);
             stage.show();
             usersDetails = fxmlLoader.getController();
-            //view.setResizeEvent(scene);
             usersDetails.setController(controller, stage);
             controller.addObserver(usersDetails);
             usersDetails.setUserDetails(userDetails);
         }
     }
 
+
+
     public void exit(){
         stage.close();
     }
 
+    /**
+     * This method close the window according to user request
+     * @param primaryStage
+     */
     private void SetStageCloseEvent(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
