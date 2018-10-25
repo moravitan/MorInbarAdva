@@ -10,9 +10,7 @@ public class Update implements Observer {
 
     private Controller controller;
     private Stage stage;
-
     private String userDetails;
-
     private String [] userDetailsSplited;
 
     public javafx.scene.control.TextField firstName;

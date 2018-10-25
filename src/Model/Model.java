@@ -20,7 +20,6 @@ public class Model extends Observable {
         usersDatebase.insertIntoTable("Users", data);
 
     }
-
     public String read(String userName) {
        if (usersDatebase.read("Users", userName) == null){
            Alert alert = new Alert(Alert.AlertType.ERROR);
