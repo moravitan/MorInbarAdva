@@ -15,7 +15,7 @@ public class DBConnect {
     /**
      * This method create if doesn't exist a new database by the name which equal to the databaseName field.
      */
-    public void Connect() {
+    public void connect() {
         Connection connection = null;
 
         try {
@@ -29,7 +29,7 @@ public class DBConnect {
         }
     }
 
-    public void CreateTable(String tableName){
+    public void createTable(String tableName){
         String createStatement = "CREATE TABLE IF NOT EXISTS Users (\n"
                 + "	user_name text PRIMARY KEY,\n"
                 + "	password text NOT NULL,\n"

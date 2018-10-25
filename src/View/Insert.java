@@ -13,6 +13,7 @@ public class Insert implements Observer {
     private Controller controller;
     private Stage stage;
 
+    //<editor-fold desc="Text Fields">
     public javafx.scene.control.TextField txtfld_userName;
     public javafx.scene.control.TextField txtfld_password;
     public javafx.scene.control.TextField txtfld_confirmPassword;
@@ -20,9 +21,10 @@ public class Insert implements Observer {
     public javafx.scene.control.TextField txtfld_lastName;
     public javafx.scene.control.TextField txtfld_Birthday;
     public javafx.scene.control.TextField txtfld_Address;
+    //</editor-fold>
 
 
-    public void setController (Controller controller, Stage stage){
+    void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Vacation4U.db" uuid="e66ea75c-c727-4cbc-a4d9-212b8fa59ec6">
+    <data-source source="LOCAL" name="Vacation4U.db" uuid="f3b99bf6-b80a-4eb7-ae4f-887f234d3900">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\איתן אביטן\IdeaProjects\Vacation4U\Vacation4U.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Vacation4U.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
