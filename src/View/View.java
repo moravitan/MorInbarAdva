@@ -168,9 +168,7 @@ public class View  implements Observer {
             primaryStage.close();
         }
         alert.close();
-
     }
-
 
     private void SetStageCloseEvent(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {

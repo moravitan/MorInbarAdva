@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Update">
    <children>
       <Label layoutX="411.0" layoutY="14.0" text="עדכון פרטים">
@@ -27,6 +26,6 @@
       <DatePicker fx:id="dateOfBirth" layoutX="409.0" layoutY="287.0" />
       <Label layoutX="541.0" layoutY="312.0" prefHeight="35.0" prefWidth="38.0" text="כתובת:" />
       <TextField fx:id="address" layoutX="293.0" layoutY="347.0" prefHeight="25.0" prefWidth="287.0" />
-      <Button layoutX="44.0" layoutY="360.0" mnemonicParsing="false" text="אישור" />
+      <Button layoutX="44.0" layoutY="360.0" mnemonicParsing="false" onAction="#confirm" text="אישור" />
    </children>
 </AnchorPane>

@@ -61,5 +61,9 @@ public class Update implements Observer {
 
     }
 
+    public void confirm (){
+
+    }
+
 
 }

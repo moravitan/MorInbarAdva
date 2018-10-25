@@ -103,14 +103,34 @@ public class DBConnect {
         return null;
     }
 
-    public void updateDatabase(){
+    public void updateDatabase(String tableName, String data) {
+        String[] values = data.split(",");
+        String updatetatement = "UPDATE Users SET password = ? ,"
+                                + "first_name = ? ,"
+                                + "last_name = ? ,"
+                                + "birthday = ? ,"
+                                + "address = ?"
+                                + "WHERE user_name = ?";
 
+        String url = "jdbc:sqlite:" + databaseName + ".db";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(updatetatement)) {
+
+            // set the corresponding param
+            pstmt.setString(1, values[1]);
+            pstmt.setString(2, values[2]);
+            pstmt.setString(3, values[3]);
+            pstmt.setString(4, values[4]);
+            pstmt.setString(5, values[5]);
+            pstmt.setString(6, values[0]);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-
-
-
-    public void deleteFromTable (String tableName, String userName){
+    
+        public void deleteFromTable (String tableName, String userName){
         String deleteStatement = "DELETE FROM Users WHERE user_name = ?";
 
         String url = "jdbc:sqlite:" + databaseName + ".db";

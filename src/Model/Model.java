@@ -20,6 +20,7 @@ public class Model extends Observable {
         usersDatebase.insertIntoTable("Users", data);
 
     }
+
     public String read(String userName) {
        if (usersDatebase.read("Users", userName) == null){
            Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -37,8 +38,8 @@ public class Model extends Observable {
     }
 
 
-    public void update() {
-
+    public void update(String data) {
+        usersDatebase.updateDatabase("Users", data);
     }
 
     public void delete(String userName) {
