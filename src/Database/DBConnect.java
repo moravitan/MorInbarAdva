@@ -7,7 +7,10 @@ public class DBConnect {
 
     private String databaseName;
 
-
+    /**
+     * Constructor for the class DBConnect
+     * @param databaseName
+     */
     public DBConnect(String databaseName) {
         this.databaseName = databaseName;
     }
@@ -29,6 +32,10 @@ public class DBConnect {
         }
     }
 
+    /**
+     * This method create a new table in the data base by the name tableName
+     * @param tableName
+     */
     public void createTable(String tableName){
         String createStatement = "CREATE TABLE IF NOT EXISTS Users (\n"
                 + "	user_name text PRIMARY KEY,\n"
@@ -50,9 +57,12 @@ public class DBConnect {
 
     }
 
-
+    /**
+     * This method insert a new row to Users table with the given data
+     * @param tableName
+     * @param data data of the new row which need to be added
+     */
     public void insertIntoTable(String tableName, String data){
-
         String [] values = data.split(",");
         String insertStatement = "INSERT INTO Users (user_name,password,first_name,last_name,birthday,address) VAlUES (?,?,?,?,?,?)";
 
@@ -70,10 +80,16 @@ public class DBConnect {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * This method search and return the row in the database which is equal to the given userName
+     * @param tableName
+     * @param userName - user name to search by
+     * @return the founded row
+     */
     public String read (String tableName, String userName){
 
         String selectQuery = "SELECT * FROM users WHERE user_name = ?";
@@ -90,10 +106,10 @@ public class DBConnect {
             while (rs.next()) {
                 String res = rs.getString("user_name") + "," +
                         rs.getString("password") + "," +
-                                rs.getString("first_name") + "," +
-                                rs.getString("last_name") + "," +
-                                rs.getString("birthday") + "," +
-                                rs.getString("address");
+                        rs.getString("first_name") + "," +
+                        rs.getString("last_name") + "," +
+                        rs.getString("birthday") + "," +
+                        rs.getString("address");
                 System.out.println(res);
                 return res;
             }
@@ -103,14 +119,20 @@ public class DBConnect {
         return null;
     }
 
+    /**
+     * This method update the row in the data base where the user name is equal to the given user name in the
+     * data string
+     * @param tableName
+     * @param data - all the parameters needed to be updated
+     */
     public void updateDatabase(String tableName, String data) {
         String[] values = data.split(",");
         String updatetatement = "UPDATE Users SET password = ? ,"
-                                + "first_name = ? ,"
-                                + "last_name = ? ,"
-                                + "birthday = ? ,"
-                                + "address = ?"
-                                + "WHERE user_name = ?";
+                + "first_name = ? ,"
+                + "last_name = ? ,"
+                + "birthday = ? ,"
+                + "address = ?"
+                + "WHERE user_name = ?";
 
         String url = "jdbc:sqlite:" + databaseName + ".db";
 
@@ -129,8 +151,13 @@ public class DBConnect {
             e.printStackTrace();
         }
     }
-    
-        public void deleteFromTable (String tableName, String userName){
+
+    /**
+     * This method delete a row from the data base where the user name is equal to given userName param
+     * @param tableName
+     * @param userName
+     */
+    public void deleteFromTable (String tableName, String userName){
         String deleteStatement = "DELETE FROM Users WHERE user_name = ?";
 
         String url = "jdbc:sqlite:" + databaseName + ".db";
@@ -146,12 +173,6 @@ public class DBConnect {
         }
 
     }
-    /**
-     *
-     * @return the name of the database
-     */
-    public String getDatabaseName() {
-        return databaseName;
-    }
+
 }
 

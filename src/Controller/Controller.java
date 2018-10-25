@@ -32,7 +32,7 @@ public class Controller extends Observable implements Observer {
     }
 
     /**
-     * This method read a row from the data base where the primary key is equal to @param userName
+     * This method search and return the row in the database which is equal to the given userName
      * @param userName
      * @return the row
      */
