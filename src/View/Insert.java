@@ -42,16 +42,32 @@ public class Insert implements Observer {
         String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
 
+        // Checking if the user name already exist in the data base
+        if (controller.read(userName) != null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Oops..");
+            alert.setContentText("This user name already exist in the data base");
+            alert.showAndWait();
+            alert.close();
+        }
+
         // Checking that both password text fields are equal
-        if (!password.equals(confirmPassword)){
+        else if (!password.equals(confirmPassword)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Oops..");
             alert.setContentText("Password isn't matching");
             alert.showAndWait();
             alert.close();
         }
+        else if (!validation()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Oops..");
+            alert.setContentText("One or more fields is empty");
+            alert.showAndWait();
+            alert.close();
+        }
         else{
-                controller.insert(userName,password,firstName,lastName,birthday,address);
+            controller.insert(userName,password,firstName,lastName,birthday,address);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             //alert.setHeaderText("");
             alert.setContentText("התחברת בהצלחה");
@@ -59,6 +75,31 @@ public class Insert implements Observer {
             alert.close();
             stage.close();
         }
+    }
+
+    private boolean validation() {
+        if (txtfld_userName.getText() == null || txtfld_userName.getText().trim().isEmpty())
+            return false;
+        if (txtfld_password.getText() == null || txtfld_password.getText().trim().isEmpty())
+            return false;
+        if (txtfld_confirmPassword.getText() == null || txtfld_confirmPassword.getText().trim().isEmpty())
+            return false;
+        if (txtfld_firstName.getText() == null || txtfld_firstName.getText().trim().isEmpty())
+            return false;
+        if (txtfld_lastName.getText() == null || txtfld_lastName.getText().trim().isEmpty())
+            return false;
+        if (txtfld_Birthday.getText() == null || txtfld_Birthday.getText().trim().isEmpty())
+            return false;
+        if (txtfld_Address.getText() == null || txtfld_Address.getText().trim().isEmpty()){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+
+
+
     }
 
     public void cancel(ActionEvent actionEvent) {

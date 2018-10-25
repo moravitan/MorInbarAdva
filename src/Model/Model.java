@@ -17,11 +17,11 @@ public class Model extends Observable {
     public void insert(String userName, String password, String firstName, String lastName, String birthday, String address) {
         String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
         usersDatebase.insertIntoTable("Users", data);
+
     }
 
-
-    public void read(String userName) {
-
+    public String read(String userName) {
+       return usersDatebase.read("Users", userName);
     }
 
 

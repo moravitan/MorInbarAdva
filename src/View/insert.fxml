@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -61,16 +62,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="txtfld_Birthday" prefHeight="36.0" prefWidth="150.0" />
             <Label layoutX="10.0" layoutY="25.0" prefHeight="38.0" prefWidth="132.0" text="כתובת                            " GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="38.0" prefWidth="132.0" text="תאריך לידה                     " GridPane.columnIndex="1" />
             <TextField fx:id="txtfld_Address" prefHeight="36.0" prefWidth="150.0" GridPane.rowIndex="1" />
+            <TextField fx:id="txtfld_Birthday" prefHeight="36.0" prefWidth="150.0" />
          </children>
       </GridPane>
       <GridPane GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -98,6 +100,7 @@
          <children>
             <Label layoutX="10.0" layoutY="25.0" prefHeight="38.0" prefWidth="132.0" text="סיסמה בשנית               " GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtfld_confirmPassword" layoutX="160.0" layoutY="26.0" prefHeight="36.0" prefWidth="150.0" GridPane.rowIndex="1" />
+            <DatePicker />
          </children>
           <padding>
               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

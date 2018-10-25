@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Model;
 
+import java.sql.SQLException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,13 +18,18 @@ public class Controller extends Observable implements Observer {
         model.insert(userName,password,birthday,firstName,lastName,address);
     }
 
+    public String read (String userName){
+        return model.read(userName);
+    }
+
     public void delete (String userName){
 
     }
 
-    @Override
     public void update(Observable o, Object arg) {
 
     }
+
+
 
 }

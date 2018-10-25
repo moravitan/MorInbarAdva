@@ -83,7 +83,7 @@ public class View  implements Observer {
         //set what you want on your scene
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Welcome!");
-        Scene scene = new Scene(root, 200, 100);
+        Scene scene = new Scene(root, 500, 300);
         stage.setScene(scene);
         //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
         //stage.setScene(scene);
