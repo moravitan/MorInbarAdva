@@ -13,6 +13,5 @@ public class test {
 //        Model model = new Model();
 //        model.insert("mor","mor","mor","mor","mor","mor");
 //        model.read("mor");
-
     }
 }

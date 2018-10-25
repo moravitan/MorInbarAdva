@@ -15,7 +15,7 @@ public class DBConnect {
     /**
      * This method create if doesn't exist a new database by the name which equal to the databaseName field.
      */
-    public void Connect() {
+    public void connect() {
         Connection connection = null;
 
         try {
@@ -29,7 +29,7 @@ public class DBConnect {
         }
     }
 
-    public void CreateTable(String tableName){
+    public void createTable(String tableName){
         String createStatement = "CREATE TABLE IF NOT EXISTS Users (\n"
                 + "	user_name text PRIMARY KEY,\n"
                 + "	password text NOT NULL,\n"
@@ -50,6 +50,7 @@ public class DBConnect {
 
     }
 
+
     public void insertIntoTable(String tableName, String data){
 
         String [] values = data.split(",");
@@ -69,9 +70,44 @@ public class DBConnect {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+
         }
     }
+
+    public String read (String tableName, String userName){
+
+        String selectQuery = "SELECT * FROM users WHERE user_name = ?";
+
+        String url = "jdbc:sqlite:" + databaseName + ".db";
+
+        try (Connection conn = DriverManager.getConnection(url);
+             PreparedStatement pstmt = conn.prepareStatement(selectQuery)) {
+
+            // set the value
+            pstmt.setString(1,userName);
+            ResultSet rs  = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String res = rs.getString("user_name") + "\t" +
+                                rs.getString("first_name") + "\t" +
+                                rs.getString("last_name") + "\t" +
+                                rs.getString("birthday") + "\t" +
+                                rs.getString("address");
+                System.out.println(res);
+                return res;
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return null;
+    }
+
+    public void updateDatabase(){
+
+    }
+
+
+
 
     public void deleteFromTable (String tableName, String userName){
         String deleteStatement = "DELETE FROM Users WHERE user_name = ?";
@@ -89,7 +125,6 @@ public class DBConnect {
         }
 
     }
-
     /**
      *
      * @return the name of the database
