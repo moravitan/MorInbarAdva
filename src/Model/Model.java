@@ -14,8 +14,8 @@ public class Model extends Observable {
     }
 
 
-    public void Read(String userName) {
-
+    public String read(String userName) {
+        return usersDatebase.read("Users",userName);
     }
 
 
