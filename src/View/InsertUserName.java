@@ -43,7 +43,10 @@ public class InsertUserName implements Observer {
 
     public void search(ActionEvent actionEvent){
 
-        String username = String.valueOf(userName.getText());
+        //MOR why you did this casting? it worked for me without
+        //String username = String.valueOf(userName.getText());
+
+        String username = userName.getText();
 
         if (userName.getText() == null || userName.getText().trim().isEmpty()) {
             controller.alert();
