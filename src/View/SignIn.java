@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SignIn implements Observer{
+public class SignIn extends View implements Observer{
 
     private Controller controller;
     private Stage stage;
@@ -21,7 +21,7 @@ public class SignIn implements Observer{
 
     }
 
-    void setController(Controller controller, Stage stage) {
+    public void setController(Controller controller, Stage stage) {
         this.controller = controller;
         this.stage = stage;
 
@@ -65,7 +65,7 @@ public class SignIn implements Observer{
 
         //implement here get user details and split ;
         //then check if the passwods matchs
-        
+
 
         return true;
     }

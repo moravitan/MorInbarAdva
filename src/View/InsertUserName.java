@@ -18,7 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-public class InsertUserName implements Observer {
+public class InsertUserName extends View implements Observer {
 
     private Controller controller;
     private Stage stage;
@@ -31,7 +31,7 @@ public class InsertUserName implements Observer {
     public InsertUserName() {
     }
 
-    void setController(Controller controller, Stage stage){
+    public void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
@@ -44,9 +44,9 @@ public class InsertUserName implements Observer {
     public void search(ActionEvent actionEvent){
 
         //MOR why you did this casting? it worked for me without
-        //String username = String.valueOf(userName.getText());
+        String username = String.valueOf(userName.getText());
 
-        String username = userName.getText();
+        //String username = userName.getText();
 
         if (userName.getText() == null || userName.getText().trim().isEmpty()) {
             controller.alert();

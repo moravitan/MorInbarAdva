@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Insert implements Observer {
+public class Insert extends View implements Observer {
 
     private Controller controller;
     private Stage stage;
@@ -29,7 +29,7 @@ public class Insert implements Observer {
     //</editor-fold>
 
 
-    public void setController (Controller controller, Stage stage){
+    public void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }

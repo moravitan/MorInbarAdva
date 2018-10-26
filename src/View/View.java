@@ -73,85 +73,19 @@ public class View  implements Observer {
         controller.addObserver(insertWindow);
     }
 
-    public void read(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("read.fxml"));
-        Parent root = null;
-        try {
-            root = (Parent) fxmlLoader.load(getClass().getResource("read.fxml").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        //set what you want on your scene
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Welcome!");
-        Scene scene = new Scene(root, 419, 300);
-        stage.setScene(scene);
-        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-        //stage.setScene(scene);
-        stage.setResizable(false);
-        SetStageCloseEvent(stage);
-        stage.show();
-        readWindow = fxmlLoader.getController();
-        //view.setResizeEvent(scene);
-        readWindow.setController(controller, stage);
-        // controller.addObserver(readWindow);
 
+    public void read(ActionEvent actionEvent){
+        newStage("read.fxml", "חיפוש משתמש", readWindow, 419, 300);
     }
 
-    public void update(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("InsertUserName.fxml"));
-        Parent root = null;
-        try {
-            root = (Parent) fxmlLoader.load(getClass().getResource("InsertUserName.fxml").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        //set what you want on your scene
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("עדכון פרטים אישיים");
-        Scene scene = new Scene(root, 300, 250);
-        stage.setScene(scene);
-        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-        //stage.setScene(scene);
-        stage.setResizable(false);
-        SetStageCloseEvent(stage);
-        stage.show();
-        InsertUserNameWindow = fxmlLoader.getController();
-        //view.setResizeEvent(scene);
-        InsertUserNameWindow.setController(controller, stage);
-        controller.addObserver(InsertUserNameWindow);
-    }
+   public void update(ActionEvent actionEvent){
+       newStage("InsertUserName.fxml","עדכון פרטים אישיים" , InsertUserNameWindow, 300,250 );
+   }
 
-    public void delete(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new
-                FXMLLoader(getClass().getResource("delete.fxml"));
-        Parent root = null;
-        try {
-            root = (Parent) fxmlLoader.load(getClass().getResource("delete.fxml").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        //set what you want on your scene
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Welcome!");
-        Scene scene = new Scene(root, 500, 300);
-        stage.setScene(scene);
-        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-        //stage.setScene(scene);
-        stage.setResizable(false);
-        SetStageCloseEvent(stage);
-        stage.show();
-        deleteWindow = fxmlLoader.getController();
-        //view.setResizeEvent(scene);
-        deleteWindow.setController(controller, stage);
-        controller.addObserver(deleteWindow);
+   public void delete(ActionEvent actionEvent){
+        newStage("delete.fxml", "מחיקת חשבון" , deleteWindow, 500, 300);
+   }
 
-    }
 
     private void SetStageCloseEvent(Stage stage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -189,5 +123,32 @@ public class View  implements Observer {
         }
         alert.close();
 
+    }
+
+    //create a new stage
+    private void newStage(String fxmlName,String title, View windowName, int width, int height){
+        FXMLLoader fxmlLoader = new
+                FXMLLoader(getClass().getResource(fxmlName));
+        Parent root = null;
+        try {
+            root = (Parent) fxmlLoader.load(getClass().getResource(fxmlName).openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        //set what you want on your scene
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle(title);
+        Scene scene = new Scene(root, width, height);
+        stage.setScene(scene);
+        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
+        //stage.setScene(scene);
+        stage.setResizable(false);
+        SetStageCloseEvent(stage);
+        stage.show();
+        windowName = fxmlLoader.getController();
+        //view.setResizeEvent(scene);
+        windowName.setController(controller, stage);
+        controller.addObserver(windowName);
     }
 }

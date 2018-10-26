@@ -17,7 +17,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-public class Read {
+public class Read extends View implements Observer {
 
     private Controller controller;
     private Stage stage;
@@ -31,7 +31,7 @@ public class Read {
      * @param controller
      * @param stage
      */
-    void setController(Controller controller, Stage stage){
+    public void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
