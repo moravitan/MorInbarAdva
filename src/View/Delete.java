@@ -26,12 +26,11 @@ public class Delete extends View implements Observer {
 
     public void confirm(){
         String userName = String.valueOf(txtfld_userinput.getText());
-        if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()){
-            controller.alert();
+        if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()) {
+            controller.alert("אנא בחר שם משתמש לחיפוש");
         }
-
         else {
-            String data = controller.read(userName);
+            String data = controller.read(userName,false);
             if (data != null) {
                 controller.delete(userName);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
@@ -21,8 +20,8 @@ public class Read extends View implements Observer {
 
     private Controller controller;
     private Stage stage;
-    private ViewTable viewTable;
-    private String data;
+    private String userDetails;
+    private UsersDetails usersDetails;
 
     public javafx.scene.control.TextField txtfld_userinput;
 
@@ -31,29 +30,32 @@ public class Read extends View implements Observer {
      * @param controller
      * @param stage
      */
-    public void setController(Controller controller, Stage stage){
+   public  void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
 
+    /**
+     * This method search a row in the data base where the primary key is equal to the user input
+     * if a row is founded, a new window with the user details is shows up
+     */
     public void confirm (){
         String userName = String.valueOf(txtfld_userinput.getText());
 
         if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()) {
-            controller.alert();
+            controller.alert("אנא בחר שם משתמש לחיפוש");
         }
 
-        String data = controller.read(userName);
+        userDetails = controller.read(userName,false);
 
-        if (data != null) {
-            data = controller.read(userName);
-            String[] values = data.split(",");
+        if (userDetails != null) {
+            userDetails = controller.read(userName,false);
 
             FXMLLoader fxmlLoader = new
-                    FXMLLoader(getClass().getResource("tableView.fxml"));
+                    FXMLLoader(getClass().getResource("usersDetails.fxml"));
             Parent root = null;
             try {
-                root = (Parent) fxmlLoader.load(getClass().getResource("tableView.fxml").openStream());
+                root = (Parent) fxmlLoader.load(getClass().getResource("usersDetails.fxml").openStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -61,24 +63,28 @@ public class Read extends View implements Observer {
             //set what you want on your scene
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Welcome!");
-            Scene scene = new Scene(root, 500, 300);
+            Scene scene = new Scene(root, 600, 400);
             stage.setScene(scene);
-            //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-            //stage.setScene(scene);
             stage.setResizable(false);
             SetStageCloseEvent(stage);
             stage.show();
-            viewTable = fxmlLoader.getController();
-            //view.setResizeEvent(scene);
-            viewTable.setController(controller, stage);
-            controller.addObserver(viewTable);
+            usersDetails = fxmlLoader.getController();
+            usersDetails.setController(controller, stage);
+            controller.addObserver(usersDetails);
+            usersDetails.setUserDetails(userDetails);
         }
     }
+
+
 
     public void exit(){
         stage.close();
     }
 
+    /**
+     * This method close the window according to user request
+     * @param primaryStage
+     */
     private void SetStageCloseEvent(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {

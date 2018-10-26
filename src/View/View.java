@@ -74,6 +74,7 @@ public class View  implements Observer {
     }
 
 
+
     public void read(ActionEvent actionEvent){
         newStage("read.fxml", "חיפוש משתמש", readWindow, 419, 300);
     }

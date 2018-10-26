@@ -49,7 +49,7 @@ public class SignIn extends View implements Observer{
 
         // read the user name from the data base
         // if doesn't exist showing alert message
-        userDetails = controller.read(username.getText());
+        userDetails = controller.read(username.getText(),false);
 
         //if the password is not correct
         if(!validPassword()){

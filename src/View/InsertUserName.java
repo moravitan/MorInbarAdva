@@ -49,12 +49,12 @@ public class InsertUserName extends View implements Observer {
         //String username = userName.getText();
 
         if (userName.getText() == null || userName.getText().trim().isEmpty()) {
-            controller.alert();
+            controller.alert("הכנס שם משתמש");
         }
 
         // read the user name from the data base
         // if doesn't exist showing alert message
-        userDetails = controller.read(username);
+        userDetails = controller.read(username,false);
 
         //check if userName does not exist, return alert error
         if (userDetails != null){

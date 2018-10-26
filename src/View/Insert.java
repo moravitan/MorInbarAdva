@@ -23,9 +23,10 @@ public class Insert extends View implements Observer {
     public javafx.scene.control.TextField txtfld_confirmPassword;
     public javafx.scene.control.TextField txtfld_firstName;
     public javafx.scene.control.TextField txtfld_lastName;
-    public javafx.scene.control.TextField txtfld_Birthday;
     public javafx.scene.control.TextField txtfld_Address;
-    public javafx.scene.control.DatePicker datepicker_date;
+    public javafx.scene.control.ComboBox combo_box_day;
+    public javafx.scene.control.ComboBox combo_box_month;
+    public javafx.scene.control.ComboBox combo_box_year;
     //</editor-fold>
 
 
@@ -40,50 +41,20 @@ public class Insert extends View implements Observer {
     }
 
     public void submit(ActionEvent actionEvent) {
-        String userName = String.valueOf(txtfld_userName.getText());
-        String password = String.valueOf(txtfld_password.getText());
-        String confirmPassword = String.valueOf(txtfld_confirmPassword.getText());
-        String firstName = String.valueOf(txtfld_firstName.getText());
-        String lastName = String.valueOf(txtfld_lastName.getText());
-        String birthday = String.valueOf(txtfld_Birthday.getText());
-        String address = String.valueOf(txtfld_Address.getText());
-        LocalDate d = datepicker_date.getValue();
-        String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String userName = txtfld_userName.getText();
+        String password = txtfld_password.getText();
+        String confirmPassword = txtfld_confirmPassword.getText();
+        String firstName = txtfld_firstName.getText();
+        String lastName = txtfld_lastName.getText();
+        String address = txtfld_Address.getText();
 
-        // Checking if the user name already exist in the data base
-        if (controller.read(userName) != null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("שגיאה");
-            alert.setContentText("שם המשתמש שהזנת כבר קיים");
-            alert.showAndWait();
-            alert.close();
+        if (!validation()){
+            controller.alert("שדה אחד או יותר ריקים");
         }
+        controller.insert(userName,password,confirmPassword,firstName,lastName,getBirthday(),address);
+        stage.close();
 
-        // Checking that both password text fields are equal
-        else if (!password.equals(confirmPassword)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("שגיאה");
-            alert.setContentText("הסיסמאות אינן תואמות");
-            alert.showAndWait();
-            alert.close();
-        }
-        // Checking if all the text fields are not empty
-        else if (!validation()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("שגיאה");
-            alert.setContentText("שדה אחד או יותר ריקים");
-            alert.showAndWait();
-            alert.close();
-        }
-        else{
-            controller.insert(userName,password,firstName,lastName,birthday,address);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            //alert.setHeaderText("");
-            alert.setContentText("התחברת בהצלחה");
-            alert.showAndWait();
-            alert.close();
-            stage.close();
-        }
+
     }
 
     private boolean validation() {
@@ -97,14 +68,19 @@ public class Insert extends View implements Observer {
             return false;
         if (txtfld_lastName.getText() == null || txtfld_lastName.getText().trim().isEmpty())
             return false;
-        if (txtfld_Birthday.getText() == null || txtfld_Birthday.getText().trim().isEmpty())
-            return false;
         if (txtfld_Address.getText() == null || txtfld_Address.getText().trim().isEmpty()){
             return false;
         }
         else {
            return true;
         }
+    }
+
+    private String getBirthday (){
+        String day = (String) combo_box_day.getValue();
+        String month = (String) combo_box_month.getValue();
+        String year = (String) combo_box_year.getValue();
+        return day  + "/" + month + "/" + year;
     }
 
     public void cancel(ActionEvent actionEvent) {
