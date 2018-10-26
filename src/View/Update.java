@@ -63,15 +63,13 @@ public class Update implements Observer {
     }
 
     public void confirm (){
-
-        String newPassword = String.valueOf(password.getText());
-        String newFirstName = String.valueOf(firstName.getText());
-        String newLastName = String.valueOf(lastName.getText());
+        String newPassword = password.getText();
+        String newFirstName = firstName.getText();
+        String newLastName = lastName.getText();
         String newBirthday = getBirthday();
-        String newAddress = String.valueOf(address.getText());
+        String newAddress = address.getText();
         String data = userDetailsSplited[0] + "," + newPassword + "," + newFirstName + "," + newLastName + "," + newBirthday + "," + newAddress;
         controller.updateDB(data);
-
     }
 
     private String getBirthday(){

@@ -54,11 +54,11 @@ public class Model extends Observable {
        return null;
     }
 
-
     /**
      * This method update the database with the given @param data
      * @param data
      */
+
     public void update(String data) {
         usersDatabase.updateDatabase("Users", data);
     }

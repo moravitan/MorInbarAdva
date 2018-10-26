@@ -17,7 +17,9 @@ public class UsersDetails implements Observer {
     public javafx.scene.control.TextField txtfld_userName;
     public javafx.scene.control.TextField txtfld_firstName;
     public javafx.scene.control.TextField txtfld_lastName;
-    public javafx.scene.control.DatePicker txtfld_birthday;
+    public javafx.scene.control.ComboBox combo_box_day;
+    public javafx.scene.control.ComboBox combo_box_month;
+    public javafx.scene.control.ComboBox combo_box_year;
     public javafx.scene.control.TextField txtfld_address;
 
 
@@ -42,7 +44,10 @@ public class UsersDetails implements Observer {
         txtfld_userName.setText(userDetailsSplited[0]);
         txtfld_firstName.setText(userDetailsSplited[2]);
         txtfld_lastName.setText(userDetailsSplited[3]);
-        //txtfld_birthday.setText(userDetailsSplited[4]);
+        String [] date = userDetailsSplited[4].split("/");
+        combo_box_day.setPromptText(date[0]);
+        combo_box_month.setPromptText(date[1]);
+        combo_box_year.setPromptText(date[2]);
         txtfld_address.setText(userDetailsSplited[5]);
     }
 }
