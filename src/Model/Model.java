@@ -29,9 +29,27 @@ public class Model extends Observable {
      * @param birthday
      * @param address
      */
-    public void insert(String userName, String password, String firstName, String lastName, String birthday, String address) {
+    public void insert(String userName, String password, String confirmPassword,  String firstName, String lastName, String birthday, String address) {
         String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
-        usersDatabase.insertIntoTable("Users", data);
+
+        // Checking if the user name already exist in the data base
+        if (read(userName, true) != null){
+            alert("שם המשתמש שהזנת כבר קיים");
+        }
+
+        // Checking that both password text fields are equal
+        else if (!password.equals(confirmPassword)){
+            alert("הסיסמאות אינן תואמות");
+        }
+        else{
+            usersDatabase.insertIntoTable("Users", data);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setHeaderText("");
+            alert.setContentText("התחברת בהצלחה");
+            alert.showAndWait();
+            alert.close();
+        }
+
     }
 
     /**
@@ -45,11 +63,7 @@ public class Model extends Observable {
            return usersDatabase.read("Users", userName);
        }
        else if (!isInsert){
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setHeaderText("אופס..");
-           alert.setContentText("שם משתמש לא קיים במערכת");
-           alert.showAndWait();
-           alert.close();
+           alert("שם משתמש לא קיים במערכת");
        }
        return null;
     }
@@ -69,5 +83,12 @@ public class Model extends Observable {
      */
     public void delete(String userName) {
         usersDatabase.deleteFromTable("Users", userName);
+    }
+
+    public void alert(String messageText){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(messageText);
+        alert.showAndWait();
+        alert.close();
     }
 }

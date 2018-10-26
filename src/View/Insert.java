@@ -48,39 +48,11 @@ public class Insert implements Observer {
         String lastName = txtfld_lastName.getText();
         String address = txtfld_Address.getText();
 
-        // Checking if the user name already exist in the data base
-        if (controller.read(userName, true) != null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("אופס..");
-            alert.setContentText("שם המשתמש כבר קיים במערכת, אנא בחר שם משתמש חדש");
-            alert.showAndWait();
-            alert.close();
+        if (!validation()){
+            controller.alert("שדה אחד או יותר ריקים");
         }
-        // Checking that both password text fields are equal
-        else if (!password.equals(confirmPassword)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("אופס..");
-            alert.setContentText("סיסמאות לא תואמות");
-            alert.showAndWait();
-            alert.close();
-        }
-        // Checking if all the text fields are not empty
-        else if (!validation()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("אופס..");
-            alert.setContentText("אחד או יותר מהשדות לא מלאים");
-            alert.showAndWait();
-            alert.close();
-        }
-        else{
-            controller.insert(userName,password,firstName,lastName,date,address);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            //alert.setHeaderText("");
-            alert.setContentText("התחברת בהצלחה");
-            alert.showAndWait();
-            alert.close();
-            stage.close();
-        }
+        controller.insert(userName,password,confirmPassword,firstName,lastName,getBirthday(),address);
+        stage.close();
     }
 
     /**

@@ -27,8 +27,8 @@ public class Controller extends Observable implements Observer {
      * @param address
      * This method insert a new row to the data base with the given parameters
      */
-    public void insert (String userName, String password, String birthday, String firstName, String lastName, String address) {
-        model.insert(userName,password,birthday,firstName,lastName,address);
+    public void insert (String userName, String password, String confirmPassword, String birthday, String firstName, String lastName, String address) {
+        model.insert(userName,password,confirmPassword,birthday,firstName,lastName,address);
     }
 
     /**
@@ -61,10 +61,9 @@ public class Controller extends Observable implements Observer {
      * This method create an Alert object.
      * This method invoked when the user didn't insert an input
      */
-    public void alert(){
+    public void alert(String messageText){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("אופס..");
-        alert.setContentText("הכנס שם משתמש");
+        alert.setContentText(messageText);
         alert.showAndWait();
         alert.close();
     }
