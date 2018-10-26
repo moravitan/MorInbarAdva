@@ -64,12 +64,14 @@ public class Update implements Observer {
 
     public void confirm (){
         String newPassword = password.getText();
+        String newPasswordReplay = passwordReplay.getText();
         String newFirstName = firstName.getText();
         String newLastName = lastName.getText();
         String newBirthday = getBirthday();
         String newAddress = address.getText();
-        String data = userDetailsSplited[0] + "," + newPassword + "," + newFirstName + "," + newLastName + "," + newBirthday + "," + newAddress;
-        controller.updateDB(data);
+        String data = userDetailsSplited[0] + "," + newPassword + "," + newPasswordReplay + "," + newFirstName + "," + newLastName + "," + newBirthday + "," + newAddress;
+        controller.updateDB( userDetailsSplited[0],newPassword ,newPasswordReplay,newFirstName , newLastName , newBirthday,newAddress);
+        stage.close();
     }
 
     private String getBirthday(){

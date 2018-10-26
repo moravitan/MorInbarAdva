@@ -70,11 +70,30 @@ public class Model extends Observable {
 
     /**
      * This method update the database with the given @param data
-     * @param data
+     * @param userName
+     * @param password
+     * @param confirmPassword
+     * @param firstName
+     * @param lastName
+     * @param birthday
+     * @param address
      */
 
-    public void update(String data) {
-        usersDatabase.updateDatabase("Users", data);
+    public void update(String userName, String password, String confirmPassword,  String firstName, String lastName, String birthday, String address) {
+        String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
+        // Checking that both password text fields are equal
+        if(!password.equals(confirmPassword)){
+            alert("הסיסמאות אינן תואמות");
+        }
+        else{
+            usersDatabase.updateDatabase("Users", data);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setHeaderText("");
+            alert.setContentText("פרטי החשבון עודכנו בהצלחה");
+            alert.showAndWait();
+            alert.close();
+        }
+
     }
 
     /**

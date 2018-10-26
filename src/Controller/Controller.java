@@ -41,11 +41,17 @@ public class Controller extends Observable implements Observer {
     }
 
     /**
-     * This method update the data base with the new userDetails (user input)
-     * @param userDetails
+     *
+     * @param userName
+     * @param password
+     * @param confirmPassword
+     * @param birthday
+     * @param firstName
+     * @param lastName
+     * @param address
      */
-    public void updateDB(String userDetails){
-        model.update(userDetails);
+    public void updateDB(String userName, String password, String confirmPassword, String birthday, String firstName, String lastName, String address){
+        model.update(userName,password,confirmPassword,birthday,firstName,lastName,address);
     }
 
     /**
