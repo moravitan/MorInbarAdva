@@ -85,7 +85,7 @@ public class Model extends Observable {
         usersDatabase.deleteFromTable("Users", userName);
     }
 
-    public void alert(String messageText){
+    private void alert(String messageText){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(messageText);
         alert.showAndWait();

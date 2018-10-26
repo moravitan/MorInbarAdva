@@ -45,7 +45,6 @@ public class View  implements Observer {
 
 
     public void create(ActionEvent actionEvent) {
-        //btn_create.setDisable(true);
         FXMLLoader fxmlLoader = new
                 FXMLLoader(getClass().getResource("insert.fxml"));
         Parent root1 = null;
@@ -57,11 +56,9 @@ public class View  implements Observer {
         Stage stage = new Stage();
         //set what you want on your scene
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Welcome!");
-        Scene scene = new Scene(root1, 600, 500);
+        stage.setTitle("");
+        Scene scene = new Scene(root1, 600, 466);
         stage.setScene(scene);
-        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-        //stage.setScene(scene);
         stage.setResizable(false);
         SetStageCloseEvent(stage);
         stage.show();
@@ -86,13 +83,10 @@ public class View  implements Observer {
         stage.setTitle("Welcome!");
         Scene scene = new Scene(root, 419, 300);
         stage.setScene(scene);
-        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-        //stage.setScene(scene);
         stage.setResizable(false);
         SetStageCloseEvent(stage);
         stage.show();
         readWindow = fxmlLoader.getController();
-        //view.setResizeEvent(scene);
         readWindow.setController(controller, stage);
        // controller.addObserver(readWindow);
 
@@ -113,13 +107,10 @@ public class View  implements Observer {
         stage.setTitle("עדכון פרטים אישיים");
         Scene scene = new Scene(root, 300, 250);
         stage.setScene(scene);
-        //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
-        //stage.setScene(scene);
         stage.setResizable(false);
         SetStageCloseEvent(stage);
         stage.show();
         InsertUserNameWindow = fxmlLoader.getController();
-        //view.setResizeEvent(scene);
         InsertUserNameWindow.setController(controller, stage);
         controller.addObserver(InsertUserNameWindow);
     }

@@ -43,13 +43,12 @@ public class InsertUserName implements Observer {
         String username = userName.getText();
 
         if (userName.getText() == null || userName.getText().trim().isEmpty()) {
-            controller.alert();
+            controller.alert("שדה אחד או יותר ריקים");
         }
 
         // read the user name from the data base
         // if doesn't exist showing alert message
         userDetails = controller.read(username,false);
-
         if (userDetails != null){
             FXMLLoader fxmlLoader = new
                     FXMLLoader(getClass().getResource("Update.fxml"));

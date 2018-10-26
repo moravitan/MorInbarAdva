@@ -32,7 +32,7 @@ public class Delete implements Observer {
         String userName = String.valueOf(txtfld_userinput.getText());
         // checks if the user enter an input
         if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()){
-            controller.alert();
+            controller.alert("שדה אחד או יותר ריקים");
         }
         else {
             String data = controller.read(userName,false);

@@ -42,7 +42,7 @@ public class Read {
         String userName = String.valueOf(txtfld_userinput.getText());
 
         if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()) {
-            controller.alert();
+            controller.alert("אנא בחר שם משתמש לחיפוש");
         }
 
         userDetails = controller.read(userName,false);
