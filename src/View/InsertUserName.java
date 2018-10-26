@@ -48,7 +48,7 @@ public class InsertUserName implements Observer {
 
         // read the user name from the data base
         // if doesn't exist showing alert message
-        userDetails = controller.read(username);
+        userDetails = controller.read(username,false);
 
         if (userDetails != null){
             FXMLLoader fxmlLoader = new

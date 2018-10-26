@@ -36,8 +36,8 @@ public class Controller extends Observable implements Observer {
      * @param userName
      * @return the row
      */
-    public String read(String userName){
-        return model.read(userName);
+    public String read(String userName, Boolean isInsert){
+        return model.read(userName,isInsert);
     }
 
     /**

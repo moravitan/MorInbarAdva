@@ -40,16 +40,16 @@ public class Model extends Observable {
      * @param userName
      * @return
      */
-    public String read(String userName) {
-       if (usersDatabase.read("Users", userName) == null){
+    public String read(String userName, Boolean isInsert) {
+       if (usersDatabase.read("Users", userName) != null){
+           return usersDatabase.read("Users", userName);
+       }
+       else if (!isInsert){
            Alert alert = new Alert(Alert.AlertType.ERROR);
            alert.setHeaderText("אופס..");
            alert.setContentText("שם משתמש לא קיים במערכת");
            alert.showAndWait();
            alert.close();
-       }
-       else{
-           return usersDatabase.read("Users", userName);
        }
        return null;
     }

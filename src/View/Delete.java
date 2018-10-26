@@ -35,7 +35,7 @@ public class Delete implements Observer {
             controller.alert();
         }
         else {
-            String data = controller.read(userName);
+            String data = controller.read(userName,false);
             if (data != null) {
                 controller.delete(userName);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

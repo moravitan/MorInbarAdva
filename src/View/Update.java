@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.util.Observable;
@@ -18,8 +19,9 @@ public class Update implements Observer {
     public javafx.scene.control.TextField password;
     public javafx.scene.control.TextField passwordReplay;
     public javafx.scene.control.TextField address;
-
-
+    public javafx.scene.control.ComboBox day;
+    public javafx.scene.control.ComboBox month;
+    public javafx.scene.control.ComboBox year;
 
     /**
      *
@@ -33,19 +35,20 @@ public class Update implements Observer {
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
-
-
+    /**
+     * This method set the userDetails field
+     * @param userdetails
+     */
     public void setUserDetails(String userdetails) {
         userDetails = userdetails;
         splitToFields();
     }
 
 
-
+    /**
+     * This method split the data from the database into fields and initials the Text Fields in the
+     * update window
+     */
     private void splitToFields(){
         userDetailsSplited = userDetails.split(",");
         firstName.setText(userDetailsSplited[2]);
@@ -53,17 +56,34 @@ public class Update implements Observer {
         password.setText(userDetailsSplited[1]);
         passwordReplay.setText(userDetailsSplited[1]);
         address.setText(userDetailsSplited[5]);
-    }
-
-    public void setNewDetails(){
-        //need to change the date of birth to the new one!!!!!!1
-        String details = userDetailsSplited[0]+password+firstName+lastName+ userDetailsSplited[4]+address;
-
+        String [] date = userDetailsSplited[4].split("/");
+        day.setPromptText(date[0]);
+        month.setPromptText(date[1]);
+        year.setPromptText(date[2]);
     }
 
     public void confirm (){
 
+        String newPassword = String.valueOf(password.getText());
+        String newFirstName = String.valueOf(firstName.getText());
+        String newLastName = String.valueOf(lastName.getText());
+        String newBirthday = getBirthday();
+        String newAddress = String.valueOf(address.getText());
+        String data = userDetailsSplited[0] + "," + newPassword + "," + newFirstName + "," + newLastName + "," + newBirthday + "," + newAddress;
+        controller.updateDB(data);
+
     }
 
+    private String getBirthday(){
+        String newDay = (String) day.getValue();
+        String newMonth = (String) month.getValue();
+        String newYear = (String) year.getValue();
+        return newDay  + "/" + newMonth + "/" + newYear;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 
 }

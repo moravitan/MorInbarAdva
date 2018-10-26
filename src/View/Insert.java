@@ -23,9 +23,10 @@ public class Insert implements Observer {
     public javafx.scene.control.TextField txtfld_confirmPassword;
     public javafx.scene.control.TextField txtfld_firstName;
     public javafx.scene.control.TextField txtfld_lastName;
-    public javafx.scene.control.TextField txtfld_Birthday;
     public javafx.scene.control.TextField txtfld_Address;
-    public javafx.scene.control.DatePicker datepicker_date;
+    public javafx.scene.control.ComboBox combo_box_day;
+    public javafx.scene.control.ComboBox combo_box_month;
+    public javafx.scene.control.ComboBox combo_box_year;
     //</editor-fold>
 
 
@@ -45,13 +46,12 @@ public class Insert implements Observer {
         String confirmPassword = String.valueOf(txtfld_confirmPassword.getText());
         String firstName = String.valueOf(txtfld_firstName.getText());
         String lastName = String.valueOf(txtfld_lastName.getText());
-        String birthday = String.valueOf(txtfld_Birthday.getText());
         String address = String.valueOf(txtfld_Address.getText());
         LocalDate d = datepicker_date.getValue();
         String date = datepicker_date.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         // Checking if the user name already exist in the data base
-        if (controller.read(userName) != null){
+        if (controller.read(userName, true) != null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("אופס..");
             alert.setContentText("שם המשתמש כבר קיים במערכת, אנא בחר שם משתמש חדש");
@@ -100,14 +100,19 @@ public class Insert implements Observer {
             return false;
         if (txtfld_lastName.getText() == null || txtfld_lastName.getText().trim().isEmpty())
             return false;
-        if (txtfld_Birthday.getText() == null || txtfld_Birthday.getText().trim().isEmpty())
-            return false;
         if (txtfld_Address.getText() == null || txtfld_Address.getText().trim().isEmpty()){
             return false;
         }
         else {
             return true;
         }
+    }
+
+    private String getBirthday (){
+        String day = (String) combo_box_day.getValue();
+        String month = (String) combo_box_month.getValue();
+        String year = (String) combo_box_year.getValue();
+        return day  + "/" + month + "/" + year;
     }
 
     public void cancel(ActionEvent actionEvent) {

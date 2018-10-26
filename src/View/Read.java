@@ -45,10 +45,10 @@ public class Read {
             controller.alert();
         }
 
-        userDetails = controller.read(userName);
+        userDetails = controller.read(userName,false);
 
         if (userDetails != null) {
-            userDetails = controller.read(userName);
+            userDetails = controller.read(userName,false);
 
             FXMLLoader fxmlLoader = new
                     FXMLLoader(getClass().getResource("usersDetails.fxml"));

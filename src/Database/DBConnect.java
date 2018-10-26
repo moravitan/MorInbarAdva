@@ -2,6 +2,10 @@ package Database;
 
 import java.io.File;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DBConnect {
 
@@ -67,6 +71,8 @@ public class DBConnect {
         String insertStatement = "INSERT INTO Users (user_name,password,first_name,last_name,birthday,address) VAlUES (?,?,?,?,?,?)";
 
         String url = "jdbc:sqlite:" + databaseName + ".db";
+
+
 
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
