@@ -57,9 +57,9 @@ public class Update implements Observer {
         passwordReplay.setText(userDetailsSplited[1]);
         address.setText(userDetailsSplited[5]);
         String [] date = userDetailsSplited[4].split("/");
-        day.setPromptText(date[0]);
-        month.setPromptText(date[1]);
-        year.setPromptText(date[2]);
+        day.setValue(date[0]);
+        month.setValue(date[1]);
+        year.setValue(date[2]);
     }
 
     public void confirm (){

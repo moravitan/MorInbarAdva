@@ -45,9 +45,9 @@ public class UsersDetails implements Observer {
         txtfld_firstName.setText(userDetailsSplited[2]);
         txtfld_lastName.setText(userDetailsSplited[3]);
         String [] date = userDetailsSplited[4].split("/");
-        combo_box_day.setPromptText(date[0]);
-        combo_box_month.setPromptText(date[1]);
-        combo_box_year.setPromptText(date[2]);
+        combo_box_day.setValue(date[0]);
+        combo_box_month.setValue(date[1]);
+        combo_box_year.setValue(date[2]);
         txtfld_address.setText(userDetailsSplited[5]);
     }
 }
