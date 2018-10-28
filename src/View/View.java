@@ -30,7 +30,7 @@ public class View  implements Observer {
 
     private Stage primaryStage;
 
-    public javafx.scene.control.Button btn_create;
+    public javafx.scene.control.Button bth_createUser;
     public javafx.scene.control.Button btn_read;
     public javafx.scene.control.Button btn_update;
     public javafx.scene.control.Button btn_delete;
@@ -57,13 +57,22 @@ public class View  implements Observer {
                     controller.delete(controller.getUserName());
                     // Close program
                 }
+                btn_delete.setDisable(false);
             }
-
+            if (btn_delete.isDisable() && !(boolean) arg){
+                alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
+                newStage("SignIn.fxml", "כניסת משתמש רשום", signInWindow, 432, 383 );
+            }
             if (btn_update.isDisable() && (boolean) arg) {
                 newStage("Update.fxml", "עדכון פרטים אישיים", updateWindow, 600, 400);
+                btn_update.setDisable(false);
             }
-            btn_delete.setDisable(false);
-            btn_update.setDisable(false);
+            if (btn_update.isDisable() && !(boolean) arg){
+                alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
+                newStage("SignIn.fxml", "כניסת משתמש רשום", signInWindow, 432, 383 );
+
+            }
+
         }
 
     }
@@ -78,7 +87,7 @@ public class View  implements Observer {
 
 
     public void read(ActionEvent actionEvent){
-        newStage("read.fxml", "חיפוש משתמש", readWindow, 419, 300);
+        newStage("read.fxml", "חיפוש משתמש", readWindow, 364, 284);
     }
 
     public void update(ActionEvent actionEvent){
@@ -101,9 +110,9 @@ public class View  implements Observer {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
-                ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
-                alert.setContentText("Are you sure you want to exit?");
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("כן");
+                ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("חזור");
+                alert.setContentText("האם אתה בטוח שברצונך לעצוב?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     // ... user chose OK
@@ -133,6 +142,13 @@ public class View  implements Observer {
         }
         alert.close();
 
+    }
+
+    protected void alert(String messageText, Alert.AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.setContentText(messageText);
+        alert.showAndWait();
+        alert.close();
     }
 
     //create a new stage

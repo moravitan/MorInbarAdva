@@ -13,7 +13,7 @@
             <Font size="38.0" />
          </font>
       </Label>
-      <Button fx:id="bth_create" layoutX="390.0" layoutY="143.0" mnemonicParsing="false" onAction="#create" text="צור חשבון">
+      <Button fx:id="bth_createUser" layoutX="390.0" layoutY="143.0" mnemonicParsing="false" onAction="#create" text="צור חשבון">
          <font>
             <Font size="17.0" />
          </font>

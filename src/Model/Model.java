@@ -8,6 +8,8 @@ public class Model extends Observable {
 
     private DBConnect usersDatabase;
 
+    //public enum errorType {PASSWORD_USERS_NOT_MATCH, PASSWORDS_NOT_MATCH, USER_NOT_EXIST}
+
     /**
      * Constructor for class Model
      * The constructor create a new database with the name "Vacation4U"
@@ -27,26 +29,28 @@ public class Model extends Observable {
      * @param lastName
      * @param birthday
      * @param address
+     * @return true if insert succeeded, otherwise return false
      */
-    public void insert(String userName, String password, String confirmPassword,  String firstName, String lastName, String birthday, String address) {
+    public int insert(String userName, String password, String confirmPassword,  String firstName, String lastName, String birthday, String address) {
         String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
 
         // Checking if the user name already exist in the data base
         if (read(userName, true) != null){
-            alert("שם המשתמש שהזנת כבר קיים", Alert.AlertType.ERROR);
+            // 1 symbol notification type: username already exist in the database
+            return 1;
         }
 
         // Checking that both password text fields are equal
         else if (!password.equals(confirmPassword)){
-            alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
+            // 2 symbol notification type: passwords doesn't match
+            return 2;
         }
         else{
             usersDatabase.insertIntoTable("Users", data);
-            alert("התחברת בהצלחה", Alert.AlertType.INFORMATION);
-
+            // 3 symbol notification type: user connected successfully
+            return 3;
         }
 
-        usersDatabase.insertIntoTable("Users", data);
 
     }
 
@@ -77,14 +81,14 @@ public class Model extends Observable {
      * @param address
      */
 
-    public void update(String userName, String password, String confirmPassword,  String firstName, String lastName, String birthday, String address) {
+    public void update(String oldUserName,String userName, String password, String confirmPassword,  String firstName, String lastName, String birthday, String address) {
         String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
         // Checking that both password text fields are equal
         if(!password.equals(confirmPassword)){
             alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
         }
         else{
-            usersDatabase.updateDatabase("Users", data);
+            usersDatabase.updateDatabase("Users", data,oldUserName);
             alert("פרטי החשבון עודכנו בהצלחה", Alert.AlertType.INFORMATION);
         }
 
@@ -102,22 +106,24 @@ public class Model extends Observable {
     public void signIn(String userName, String password) {
         String details = read(userName,false);
         boolean isLegal = true;
-        if (details!=null){
+        if (details != null){
             String UserDetails = usersDatabase.read("Users", userName);
             String [] detailsArr = UserDetails.split(",");
             if (!password.equals(detailsArr[1])) {
-                alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
+                //alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
                 isLegal = false;
                 setChanged();
                 notifyObservers(isLegal);
+                //return isLegal;
             }
             else{
                 setChanged();
                 notifyObservers(isLegal);
+                //return isLegal;
 
             }
         }
-
+        //return false;
     }
 
     private void alert(String messageText, Alert.AlertType alertType){

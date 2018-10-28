@@ -74,7 +74,7 @@ public class DBConnect {
             // set the corresponding parameters
             pstmt.setString(1,values[0]);
             pstmt.setString(2,values[1]);
-            pstmt.setString(3,values[1]);
+            pstmt.setString(3,values[2]);
             pstmt.setString(4,values[3]);
             pstmt.setString(5,values[4]);
             pstmt.setString(6,values[5]);
@@ -125,9 +125,10 @@ public class DBConnect {
      * @param tableName
      * @param data - all the parameters needed to be updated
      */
-    public void updateDatabase(String tableName, String data) {
+    public void updateDatabase(String tableName, String data, String userName) {
         String[] values = data.split(",");
-        String updatetatement = "UPDATE Users SET password = ? ,"
+        String updatetatement = "UPDATE Users SET user_name = ?,"
+                + "password = ? ,"
                 + "first_name = ? ,"
                 + "last_name = ? ,"
                 + "birthday = ? ,"
@@ -140,12 +141,13 @@ public class DBConnect {
              PreparedStatement pstmt = conn.prepareStatement(updatetatement)) {
 
             // set the corresponding param
-            pstmt.setString(1, values[1]);
-            pstmt.setString(2, values[2]);
-            pstmt.setString(3, values[3]);
-            pstmt.setString(4, values[4]);
-            pstmt.setString(5, values[5]);
-            pstmt.setString(6, values[0]);
+            pstmt.setString(1, values[0]);
+            pstmt.setString(2, values[1]);
+            pstmt.setString(3, values[2]);
+            pstmt.setString(4, values[3]);
+            pstmt.setString(5, values[4]);
+            pstmt.setString(6, values[5]);
+            pstmt.setString(7, userName);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

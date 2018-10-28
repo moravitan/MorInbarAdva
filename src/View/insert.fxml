@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Insert">
     <children>
         <AnchorPane prefHeight="466.0" prefWidth="600.0">
@@ -24,9 +25,9 @@
                 <Label layoutX="527.0" layoutY="192.0" prefHeight="35.0" prefWidth="54.0" text="שם פרטי:" />
                 <TextField fx:id="txtfld_firstName" layoutX="431.0" layoutY="227.0" />
                 <Label layoutX="540.0" layoutY="132.0" prefHeight="35.0" prefWidth="40.0" text="סיסמה:" />
-                <TextField fx:id="txtfld_password" layoutX="431.0" layoutY="167.0" />
+                <PasswordField fx:id="txtfld_password" layoutX="431.0" layoutY="167.0" />
                 <Label layoutX="323.0" layoutY="132.0" prefHeight="35.0" prefWidth="75.0" text="סיסמה בשנית:" />
-                <TextField fx:id="txtfld_confirmPassword" layoutX="249.0" layoutY="167.0" />
+                <PasswordField fx:id="txtfld_confirmPassword" layoutX="249.0" layoutY="167.0" />
                 <Label layoutX="515.0" layoutY="252.0" prefHeight="35.0" prefWidth="64.0" text="תאריך לידה:" />
                 <ComboBox fx:id="combo_box_year" layoutX="510.0" layoutY="287.0" prefHeight="25.0" prefWidth="69.0" promptText="2000">
                     <items>

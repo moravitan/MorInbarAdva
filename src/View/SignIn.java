@@ -25,7 +25,7 @@ public class SignIn extends View implements Observer{
     private String userDetails;
 
     public javafx.scene.control.TextField username;
-    public javafx.scene.control.TextField password;
+    public javafx.scene.control.PasswordField password;
 
     public SignIn() {
 
@@ -45,21 +45,27 @@ public class SignIn extends View implements Observer{
 
         //if one or more is empty
         if(userName == null || Password == null || username.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("שגיאה");
             alert.setContentText("שדה אחד או יותר ריקים");
             alert.showAndWait();
-            alert.close();
+            alert.close();*/
+            alert("שדה אחד או יותר ריקים", Alert.AlertType.INFORMATION);
+        }
+        else{
+            // read the user name from the data base
+            // if doesn't exist showing alert message
+            userDetails = controller.read(userName,false);
+
+            //if the password is not correct shows alert massage
+            if (userDetails != null) {
+                controller.signIn(userName, Password);
+                stage.close();
+            }
+
+
         }
 
-        // read the user name from the data base
-        // if doesn't exist showing alert message
-        userDetails = controller.read(userName,false);
-
-        //if the password is not correct shows alert massage
-        controller.signIn(userName, Password);
-
-        stage.close();
     }
 
 }

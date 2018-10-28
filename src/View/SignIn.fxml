@@ -7,6 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="383.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SignIn">
    <children>
       <Label layoutX="110.0" layoutY="64.0" prefHeight="47.0" prefWidth="213.0" text="התחבר לחשבון">
@@ -20,7 +21,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="password" layoutX="142.0" layoutY="239.0" />
+      <PasswordField fx:id="password" layoutX="142.0" layoutY="239.0" />
       <Label layoutX="188.0" layoutY="213.0" prefHeight="26.0" prefWidth="58.0" text="סיסמה:">
          <font>
             <Font size="17.0" />

@@ -2,7 +2,10 @@ package View;
 
 import Controller.Controller;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
+import java.util.Observable;
 import java.util.Observer;
 
 public class Insert extends View implements Observer {
@@ -12,8 +15,8 @@ public class Insert extends View implements Observer {
 
     //<editor-fold desc="Text Fields">
     public javafx.scene.control.TextField txtfld_userName;
-    public javafx.scene.control.TextField txtfld_password;
-    public javafx.scene.control.TextField txtfld_confirmPassword;
+    public javafx.scene.control.PasswordField txtfld_password;
+    public javafx.scene.control.PasswordField txtfld_confirmPassword;
     public javafx.scene.control.TextField txtfld_firstName;
     public javafx.scene.control.TextField txtfld_lastName;
     public javafx.scene.control.TextField txtfld_Address;
@@ -37,10 +40,21 @@ public class Insert extends View implements Observer {
         String address = txtfld_Address.getText();
 
         if (!validation()){
-            controller.alert("שדה אחד או יותר ריקים");
+            alert("שדה אחד או יותר ריקים", Alert.AlertType.INFORMATION);
         }
-        controller.insert(userName,password,confirmPassword,firstName,lastName,getBirthday(),address);
-        stage.close();
+        else{
+            int ans = controller.insert(userName,password,confirmPassword,firstName,lastName,getBirthday(),address);
+            if (ans == 1)
+                alert("שם המשתמש שהזנת כבר קיים", Alert.AlertType.ERROR);
+            if (ans == 2)
+                alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
+            if (ans == 3){
+                alert("התחברת בהצלחה", Alert.AlertType.INFORMATION);
+                stage.close();
+            }
+
+        }
+
     }
 
     /**
@@ -75,5 +89,16 @@ public class Insert extends View implements Observer {
 
     public void cancel(ActionEvent actionEvent) {
         stage.close();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o == controller){
+            stage.close();
+        }
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 }

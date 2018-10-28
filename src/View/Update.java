@@ -14,6 +14,7 @@ public class Update extends View implements Observer {
     private String userDetails;
     private String [] userDetailsSplited;
 
+    public javafx.scene.control.TextField userName;
     public javafx.scene.control.TextField firstName;
     public javafx.scene.control.TextField lastName;
     public javafx.scene.control.TextField password;
@@ -51,6 +52,7 @@ public class Update extends View implements Observer {
      */
     private void splitToFields(){
         userDetailsSplited = userDetails.split(",");
+        userName.setText(userDetailsSplited[0]);
         firstName.setText(userDetailsSplited[2]);
         lastName.setText(userDetailsSplited[3]);
         password.setText(userDetailsSplited[1]);
@@ -63,6 +65,7 @@ public class Update extends View implements Observer {
     }
 
     public void confirm (){
+        String newUserName = userName.getText();
         String newPassword = password.getText();
         String newPasswordReplay = passwordReplay.getText();
         String newFirstName = firstName.getText();
@@ -70,7 +73,7 @@ public class Update extends View implements Observer {
         String newBirthday = getBirthday();
         String newAddress = address.getText();
         String data = userDetailsSplited[0] + "," + newPassword + "," + newPasswordReplay + "," + newFirstName + "," + newLastName + "," + newBirthday + "," + newAddress;
-        controller.updateDB( userDetailsSplited[0],newPassword ,newPasswordReplay,newFirstName , newLastName , newBirthday,newAddress);
+        controller.updateDB(userDetailsSplited[0],newUserName,newPassword ,newPasswordReplay,newFirstName , newLastName , newBirthday,newAddress);
         stage.close();
     }
 

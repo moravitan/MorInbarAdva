@@ -28,8 +28,8 @@ public class Controller extends Observable implements Observer {
      * @param address
      * This method insert a new row to the data base with the given parameters
      */
-    public void insert (String userName, String password, String confirmPassword, String birthday, String firstName, String lastName, String address) {
-        model.insert(userName,password,confirmPassword,birthday,firstName,lastName,address);
+    public int insert (String userName, String password, String confirmPassword, String birthday, String firstName, String lastName, String address) {
+        return model.insert(userName,password,confirmPassword,birthday,firstName,lastName,address);
     }
 
     /**
@@ -51,8 +51,8 @@ public class Controller extends Observable implements Observer {
      * @param lastName
      * @param address
      */
-    public void updateDB(String userName, String password, String confirmPassword, String birthday, String firstName, String lastName, String address){
-        model.update(userName,password,confirmPassword,birthday,firstName,lastName,address);
+    public void updateDB(String oldUserName, String userName, String password, String confirmPassword, String birthday, String firstName, String lastName, String address){
+        model.update(oldUserName,userName,password,confirmPassword,birthday,firstName,lastName,address);
     }
 
     /**
