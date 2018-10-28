@@ -116,7 +116,6 @@ public class DBConnect {
                         rs.getString("last_name") + "," +
                         rs.getString("birthday") + "," +
                         rs.getString("address");
-                System.out.println(res);
                 return res;
             }
         } catch (SQLException e) {

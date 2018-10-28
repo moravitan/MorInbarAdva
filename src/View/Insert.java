@@ -2,17 +2,10 @@ package View;
 
 import Controller.Controller;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Observable;
 import java.util.Observer;
 
-public class Insert implements Observer {
+public class Insert extends View implements Observer {
 
     private Controller controller;
     private Stage stage;
@@ -30,14 +23,9 @@ public class Insert implements Observer {
     //</editor-fold>
 
 
-    void setController(Controller controller, Stage stage){
+    public void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-
     }
 
     public void submit(ActionEvent actionEvent) {

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.ComboBox?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UsersDetails">
     <children>
         <Label layoutX="387.0" layoutY="14.0" text="פרטי משתמש">
@@ -18,13 +16,10 @@
             </font>
         </Label>
         <Label alignment="CENTER_RIGHT" layoutX="492.0" layoutY="72.0" prefHeight="35.0" prefWidth="89.0" text="שם  משתמש:" />
-        <TextField fx:id="txtfld_userName" layoutX="431.0" layoutY="107.0" />
         <Label alignment="CENTER_RIGHT" layoutX="512.0" layoutY="132.0" prefHeight="35.0" prefWidth="69.0" text="שם פרטי:" />
-        <TextField fx:id="txtfld_firstName" layoutX="431.0" layoutY="167.0" />
         <Label alignment="CENTER_RIGHT" layoutX="310.0" layoutY="132.0" prefHeight="35.0" prefWidth="89.0" text="שם משפחה:" />
-        <TextField fx:id="txtfld_lastName" layoutX="250.0" layoutY="167.0" />
-        <Label layoutX="515.0" layoutY="252.0" prefHeight="35.0" prefWidth="64.0" text="תאריך לידה:" />
-        <ComboBox fx:id="combo_box_year" layoutX="510.0" layoutY="287.0" prefHeight="25.0" prefWidth="69.0" promptText="2000">
+        <Label layoutX="516.0" layoutY="265.0" prefHeight="35.0" prefWidth="64.0" text="תאריך לידה:" />
+        <ComboBox fx:id="combo_box_year" layoutX="513.0" layoutY="312.0" prefHeight="25.0" prefWidth="69.0" promptText="2000">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="2000" />
@@ -103,7 +98,7 @@
                 <String fx:value="2000" />
             </value>
         </ComboBox>
-        <ComboBox fx:id="combo_box_month" layoutX="441.0" layoutY="287.0" prefHeight="25.0" prefWidth="54.0" promptText="1">
+        <ComboBox fx:id="combo_box_month" layoutX="435.0" layoutY="312.0" prefHeight="25.0" prefWidth="64.0" promptText="1">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="1" />
@@ -124,7 +119,7 @@
                 <String fx:value="1" />
             </value>
         </ComboBox>
-        <ComboBox fx:id="combo_box_day" layoutX="369.0" layoutY="287.0" prefHeight="25.0" prefWidth="54.0" promptText="1">
+        <ComboBox fx:id="combo_box_day" layoutX="350.0" layoutY="312.0" prefHeight="25.0" prefWidth="64.0" promptText="1">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="1" />
@@ -139,6 +134,25 @@
                     <String fx:value="10" />
                     <String fx:value="11" />
                     <String fx:value="12" />
+                    <String fx:value="13" />
+                    <String fx:value="14" />
+                    <String fx:value="15" />
+                    <String fx:value="16" />
+                    <String fx:value="17" />
+                    <String fx:value="18" />
+                    <String fx:value="19" />
+                    <String fx:value="20" />
+                    <String fx:value="21" />
+                    <String fx:value="22" />
+                    <String fx:value="23" />
+                    <String fx:value="24" />
+                    <String fx:value="25" />
+                    <String fx:value="26" />
+                    <String fx:value="27" />
+                    <String fx:value="28" />
+                    <String fx:value="29" />
+                    <String fx:value="30" />
+                    <String fx:value="31" />
                 </FXCollections>
             </items>
             <value>
@@ -146,7 +160,10 @@
             </value>
         </ComboBox>
         <Label layoutX="547.0" layoutY="192.0" prefHeight="35.0" prefWidth="38.0" text="כתובת:" />
-        <TextField fx:id="txtfld_address" layoutX="294.0" layoutY="227.0" prefHeight="25.0" prefWidth="287.0" />
-        <Button layoutX="44.0" layoutY="360.0" mnemonicParsing="false" text="אישור" />
+        <Label fx:id="userName" layoutX="436.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" textAlignment="RIGHT" />
+        <Label fx:id="address" layoutX="308.0" layoutY="227.0" prefHeight="35.0" prefWidth="274.0" textAlignment="RIGHT" />
+        <Label fx:id="firstName" layoutX="435.0" layoutY="167.0" prefHeight="25.0" prefWidth="149.0" textAlignment="RIGHT" />
+        <Label fx:id="lastName" layoutX="241.0" layoutY="167.0" prefHeight="25.0" prefWidth="158.0" textAlignment="RIGHT" />
+        <Button layoutX="42.0" layoutY="351.0" mnemonicParsing="false" text="אישור" onAction="#close" />
     </children>
 </AnchorPane>

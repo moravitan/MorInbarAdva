@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
    <children>
       <Label layoutX="77.0" layoutY="39.0" text="ברוכים הבאים לVacation4U">
          <font>
@@ -18,7 +18,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btn_signin" layoutX="141.0" layoutY="143.0" mnemonicParsing="false" text="כניסה למשתמשים רשומים">
+      <Button fx:id="btn_signIn" layoutX="141.0" layoutY="143.0" mnemonicParsing="false" text="כניסה למשתמשים רשומים" onAction="#signIn">
          <font>
             <Font size="17.0" />
          </font>

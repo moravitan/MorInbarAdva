@@ -2,7 +2,6 @@ package Model;
 
 import Database.DBConnect;
 import javafx.scene.control.Alert;
-
 import java.util.Observable;
 
 public class Model extends Observable {
@@ -34,21 +33,20 @@ public class Model extends Observable {
 
         // Checking if the user name already exist in the data base
         if (read(userName, true) != null){
-            alert("שם המשתמש שהזנת כבר קיים");
+            alert("שם המשתמש שהזנת כבר קיים", Alert.AlertType.ERROR);
         }
 
         // Checking that both password text fields are equal
         else if (!password.equals(confirmPassword)){
-            alert("הסיסמאות אינן תואמות");
+            alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
         }
         else{
             usersDatabase.insertIntoTable("Users", data);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            //alert.setHeaderText("");
-            alert.setContentText("התחברת בהצלחה");
-            alert.showAndWait();
-            alert.close();
+            alert("התחברת בהצלחה", Alert.AlertType.INFORMATION);
+
         }
+
+        usersDatabase.insertIntoTable("Users", data);
 
     }
 
@@ -59,13 +57,13 @@ public class Model extends Observable {
      * @return
      */
     public String read(String userName, Boolean isInsert) {
-       if (usersDatabase.read("Users", userName) != null){
-           return usersDatabase.read("Users", userName);
-       }
-       else if (!isInsert){
-           alert("שם משתמש לא קיים במערכת");
-       }
-       return null;
+        if (usersDatabase.read("Users", userName) != null){
+            return usersDatabase.read("Users", userName);
+        }
+        else if (!isInsert){
+            alert("שם משתמש לא קיים במערכת", Alert.AlertType.ERROR);
+        }
+        return null;
     }
 
     /**
@@ -83,15 +81,11 @@ public class Model extends Observable {
         String data = userName  + "," + password + "," + firstName + "," + lastName + "," + birthday + "," + address;
         // Checking that both password text fields are equal
         if(!password.equals(confirmPassword)){
-            alert("הסיסמאות אינן תואמות");
+            alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
         }
         else{
             usersDatabase.updateDatabase("Users", data);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            //alert.setHeaderText("");
-            alert.setContentText("פרטי החשבון עודכנו בהצלחה");
-            alert.showAndWait();
-            alert.close();
+            alert("פרטי החשבון עודכנו בהצלחה", Alert.AlertType.INFORMATION);
         }
 
     }
@@ -102,12 +96,35 @@ public class Model extends Observable {
      */
     public void delete(String userName) {
         usersDatabase.deleteFromTable("Users", userName);
+        alert("החשבון נמחק בהצלחה", Alert.AlertType.INFORMATION);
     }
 
-    private void alert(String messageText){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    public void signIn(String userName, String password) {
+        String details = read(userName,false);
+        boolean isLegal = true;
+        if (details!=null){
+            String UserDetails = usersDatabase.read("Users", userName);
+            String [] detailsArr = UserDetails.split(",");
+            if (!password.equals(detailsArr[1])) {
+                alert("הסיסמאות אינן תואמות", Alert.AlertType.ERROR);
+                isLegal = false;
+                setChanged();
+                notifyObservers(isLegal);
+            }
+            else{
+                setChanged();
+                notifyObservers(isLegal);
+
+            }
+        }
+
+    }
+
+    private void alert(String messageText, Alert.AlertType alertType){
+        Alert alert = new Alert(alertType);
         alert.setContentText(messageText);
         alert.showAndWait();
         alert.close();
     }
+
 }

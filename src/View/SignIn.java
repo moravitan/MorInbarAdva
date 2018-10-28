@@ -1,17 +1,27 @@
 package View;
 
 import Controller.Controller;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
 
-public class SignIn implements Observer{
+public class SignIn extends View implements Observer{
 
     private Controller controller;
     private Stage stage;
-
     private String userDetails;
 
     public javafx.scene.control.TextField username;
@@ -21,26 +31,21 @@ public class SignIn implements Observer{
 
     }
 
-    void setController(Controller controller, Stage stage) {
+    public void setController(Controller controller, Stage stage) {
         this.controller = controller;
         this.stage = stage;
 
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
-
-    public void signin(){
+    public void logIn(){
 
         String userName = username.getText();
         String Password = password.getText();
 
         //if one or more is empty
         if(userName == null || Password == null || username.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("שגיאה");
             alert.setContentText("שדה אחד או יותר ריקים");
             alert.showAndWait();
@@ -49,25 +54,12 @@ public class SignIn implements Observer{
 
         // read the user name from the data base
         // if doesn't exist showing alert message
-        userDetails = controller.read(username.getText(),false);
+        userDetails = controller.read(userName,false);
 
-        //if the password is not correct
-        if(!validPassword()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("שגיאה");
-            alert.setContentText("סיסמה שגויה");
-            alert.showAndWait();
-            alert.close();
-        }
-    }
+        //if the password is not correct shows alert massage
+        controller.signIn(userName, Password);
 
-    private boolean validPassword(){
-
-        //implement here get user details and split ;
-        //then check if the passwods matchs
-        
-
-        return true;
+        stage.close();
     }
 
 }

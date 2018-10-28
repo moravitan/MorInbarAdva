@@ -8,6 +8,7 @@ import java.util.Observer;
 public class Controller extends Observable implements Observer {
 
     private Model model;
+    private String currentUserName;
 
     /**
      * Constructor for the class Controller
@@ -60,7 +61,6 @@ public class Controller extends Observable implements Observer {
      */
     public void delete (String userName){
         model.delete(userName);
-
     }
 
     /**
@@ -77,7 +77,19 @@ public class Controller extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        if (o == model){
+            setChanged();
+            notifyObservers(arg);
+        }
 
     }
 
+    public void signIn(String userName, String password){
+        currentUserName = userName;
+        model.signIn(userName,password);
+    }
+
+    public String getUserName() {
+        return currentUserName;
+    }
 }

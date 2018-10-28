@@ -14,19 +14,19 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-public class InsertUserName implements Observer {
+public class InsertUserName extends View implements Observer {
 
     private Controller controller;
     private Stage stage;
     private Update updateWindow;
+    private String userDetails;
 
     public javafx.scene.control.TextField userName;
 
-    private String userDetails = "";
+
 
 
     public void setController(Controller controller, Stage stage){
@@ -88,7 +88,7 @@ public class InsertUserName implements Observer {
      * This method close the window according to user request
      * @param primaryStage
      */
-    private void SetStageCloseEvent(Stage primaryStage) {
+    protected void SetStageCloseEvent(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -107,8 +107,4 @@ public class InsertUserName implements Observer {
         });
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="383.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SignIn">
+<AnchorPane prefHeight="383.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SignIn">
    <children>
       <Label layoutX="110.0" layoutY="64.0" prefHeight="47.0" prefWidth="213.0" text="התחבר לחשבון">
          <font>
@@ -26,7 +26,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="182.0" layoutY="302.0" mnemonicParsing="false" onAction="#signin" text="התחבר">
+      <Button layoutX="182.0" layoutY="302.0" mnemonicParsing="false" onAction="#logIn" text="התחבר">
          <font>
             <Font size="15.0" />
          </font>
