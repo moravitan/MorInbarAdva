@@ -25,7 +25,6 @@ public class View  implements Observer {
     private Insert insertWindow;
     private Update updateWindow;
     private Read readWindow;
-    private Delete deleteWindow;
     private InsertUserName insertUserNameWindow;
     private SignIn signInWindow;
 
@@ -59,13 +58,14 @@ public class View  implements Observer {
                     // Close program
                 }
             }
-            btn_delete.setDisable(false);
 
             if (btn_update.isDisable() && (boolean) arg) {
                 newStage("Update.fxml", "עדכון פרטים אישיים", updateWindow, 600, 400);
             }
+            btn_delete.setDisable(false);
             btn_update.setDisable(false);
         }
+
     }
 
 

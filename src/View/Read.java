@@ -72,7 +72,6 @@ public class Read extends View implements Observer {
         }
     }
 
-
     public void cancel(){
         stage.close();
     }

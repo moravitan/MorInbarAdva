@@ -1,11 +1,6 @@
 package Database;
 
-import java.io.File;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class DBConnect {
 
@@ -86,7 +81,7 @@ public class DBConnect {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
     }
 
