@@ -13,9 +13,11 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 
-public class Read {
+public class Read extends View implements Observer{
 
     private Controller controller;
     private Stage stage;
@@ -29,7 +31,7 @@ public class Read {
      * @param controller
      * @param stage
      */
-    void setController(Controller controller, Stage stage){
+    public void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
@@ -42,19 +44,20 @@ public class Read {
         String userName = String.valueOf(txtfld_userinput.getText());
 
         if (txtfld_userinput.getText() == null || txtfld_userinput.getText().trim().isEmpty()) {
-            controller.alert("אנא בחר שם משתמש לחיפוש");
+            controller.alert();
         }
 
-        userDetails = controller.read(userName,false);
+        String data = controller.read(userName);
 
-        if (userDetails != null) {
-            userDetails = controller.read(userName,false);
+        if (data != null) {
+            data = controller.read(userName);
+            String[] values = data.split(",");
 
             FXMLLoader fxmlLoader = new
-                    FXMLLoader(getClass().getResource("usersDetails.fxml"));
+                    FXMLLoader(getClass().getResource("tableView.fxml"));
             Parent root = null;
             try {
-                root = (Parent) fxmlLoader.load(getClass().getResource("usersDetails.fxml").openStream());
+                root = (Parent) fxmlLoader.load(getClass().getResource("tableView.fxml").openStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -62,8 +65,10 @@ public class Read {
             //set what you want on your scene
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Welcome!");
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root, 500, 300);
             stage.setScene(scene);
+            //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
+            //stage.setScene(scene);
             stage.setResizable(false);
             SetStageCloseEvent(stage);
             stage.show();
@@ -74,8 +79,6 @@ public class Read {
         }
     }
 
-
-
     public void exit(){
         stage.close();
     }
@@ -84,7 +87,7 @@ public class Read {
      * This method close the window according to user request
      * @param primaryStage
      */
-    private void SetStageCloseEvent(Stage primaryStage) {
+    protected void SetStageCloseEvent(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

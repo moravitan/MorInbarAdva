@@ -23,21 +23,18 @@ public class InsertUserName implements Observer {
     private Controller controller;
     private Stage stage;
     private Update updateWindow;
-    private String userDetails = "";
 
     public javafx.scene.control.TextField userName;
 
+    private String userDetails = "";
 
 
-    void setController(Controller controller, Stage stage){
+    public void setController(Controller controller, Stage stage){
         this.controller = controller;
         this.stage = stage;
     }
 
-    /**
-     * This method search the row in the database where primary key user_name is equal to the user input
-     * @param actionEvent
-     */
+
     public void search(ActionEvent actionEvent){
 
         String username = userName.getText();
@@ -50,6 +47,7 @@ public class InsertUserName implements Observer {
         // if doesn't exist showing alert message
         userDetails = controller.read(username,false);
         if (userDetails != null){
+            //btn_create.setDisable(true);
             FXMLLoader fxmlLoader = new
                     FXMLLoader(getClass().getResource("Update.fxml"));
             Parent root1 = null;
@@ -64,10 +62,13 @@ public class InsertUserName implements Observer {
             stage.setTitle("עדכון פרטים אישיים");
             Scene scene = new Scene(root1, 600, 400);
             stage.setScene(scene);
+            //scene.getStylesheets().add(getClass().getResource("Welcome.css").toExternalForm());
+            //stage.setScene(scene);
             stage.setResizable(false);
             SetStageCloseEvent(stage);
             stage.show();
             updateWindow = fxmlLoader.getController();
+            //view.setResizeEvent(scene);
             updateWindow.setController(controller, stage);
             controller.addObserver(updateWindow);
             updateWindow.setUserDetails(userDetails);
