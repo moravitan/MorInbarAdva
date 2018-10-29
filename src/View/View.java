@@ -117,9 +117,12 @@ public class View  implements Observer {
                 if (result.get() == ButtonType.OK) {
                     // ... user chose OK
                     // Close program
+                    btn_update.setDisable(false);
+                    btn_delete.setDisable(false);
                 } else {
                     // ... user chose CANCEL or closed the dialog
                     windowEvent.consume();
+
                 }
             }
         });
