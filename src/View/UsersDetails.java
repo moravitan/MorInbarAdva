@@ -17,9 +17,9 @@ public class UsersDetails extends View implements Observer {
     public javafx.scene.control.Label userName;
     public javafx.scene.control.Label firstName;
     public javafx.scene.control.Label lastName;
-    public javafx.scene.control.ComboBox combo_box_day;
-    public javafx.scene.control.ComboBox combo_box_month;
-    public javafx.scene.control.ComboBox combo_box_year;
+    public javafx.scene.control.Label day;
+    public javafx.scene.control.Label month;
+    public javafx.scene.control.Label year;
     public javafx.scene.control.Label address;
 
 
@@ -45,9 +45,9 @@ public class UsersDetails extends View implements Observer {
         firstName.setText(userDetailsSplited[2]);
         lastName.setText(userDetailsSplited[3]);
         String [] date = userDetailsSplited[4].split("/");
-        combo_box_day.setValue(date[0]);
-        combo_box_month.setValue(date[1]);
-        combo_box_year.setValue(date[2]);
+        day.setText(date[0]);
+        month.setText(date[1]);
+        year.setText(date[2]);
         address.setText(userDetailsSplited[5]);
 
 
